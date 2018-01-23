@@ -1,0 +1,30 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Seu Perfil</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content  >
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="main-profile">
+       <div class="profile-background">
+       </div>
+       <div class="profile-header">
+        <img src={{userdata.im_app_usuario}} alt="Your name">
+        <h1>{{userdata.ds_nome}}</h1>
+       </div>
+       <div class="profile-body">
+        <p>Você já experimentou 110 cervejas</p>
+        <p>{{userdata.ds_email}}</p>
+        <div class="subscribe-btn">
+         <a href="#" class="btn-primary">Suas avaliações</a>
+         <a href="#" class="btn-primary">Cervejas experimentadas</a>
+        </div>
+       </div>
+      </div>
+    </div>
+   </div>
+</ion-content>

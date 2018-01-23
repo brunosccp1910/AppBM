@@ -27,17 +27,10 @@ export class IntroPage {
     //console.log('ionViewDidLoad IntroPage');
   }
 
-  public goToTabsPage1(){
-    //var user =JSON.stringify(this.getUserData());
-    var user =(this.getUserData());
-    this.navCtrl.push(HomePage, {
-    userData: user
-    //var user =(this
-    });
-  }
   public goToTabsPage(){
-    var user =JSON.parse(this.getUserData());
+    var user = this.getUserData();
     this.usuarioProvider.salvarUsuario(user);
+    console.log("Mandou pra Home");
     this.navCtrl.push(TabsPage, {
     userData: user
     });
@@ -46,7 +39,10 @@ export class IntroPage {
   loginWithFB() {
     this.facebook.login(['email', 'public_profile']).then((response: FacebookLoginResponse) => {
       this.facebook.api('me?fields=id,name,email,first_name,picture.width(720).height(720).as(picture_large)', []).then(profile => {
-        this.userData = {email: profile['email'], first_name: profile['first_name'], picture: profile['picture_large']['data']['url'], username: profile['name']}
+        console.log(profile);
+        this.userData = {email: profile['email'],id: profile['id'], first_name: profile['first_name'], picture: profile['picture_large']['data']['url'], username: profile['name']}
+        this.setUserData(this.userData);
+        this.goToTabsPage();
       });
     });
   }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { CervejasProvider } from '../../providers/cervejas/cervejas';
 import { CervejaDetalhePage } from '../cerveja-detalhe/cerveja-detalhe';
+import { Storage } from '@ionic/storage/dist/storage';
 
 /**
  * Generated class for the BeersPage page.
@@ -20,12 +21,15 @@ import { CervejaDetalhePage } from '../cerveja-detalhe/cerveja-detalhe';
 })
 export class BeersPage {
   public lista_cervejas =  new Array<any>();
+  public userdata =  new Array<any>();
+
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private cervejasProvider: CervejasProvider,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    private storage:Storage
   ) {
   }
 
@@ -33,7 +37,10 @@ export class BeersPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BeersPage');
-
+    this.storage.get('cliente').then((val) => {
+      this.userdata = val;
+      console.log(this.userdata);
+    });
     this.cervejasProvider.getCervejasCliente().subscribe(
       data => {
         const response = (data as any);

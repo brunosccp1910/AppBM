@@ -13,10 +13,10 @@ export class UsuarioProvider {
   setUserInfo(key:string, dataUser: any){
     dataUser = JSON.parse(JSON.stringify(dataUser));
     var user={
-      nome: dataUser.name,
+      nome: dataUser.username,
       email: dataUser.email ,
-      imagem: dataUser.picture.data.url,
-      id : dataUser.id
+      imagem: dataUser.picture,
+      //id : dataUser.id
       };
      this.storage.set(key,user);
   }
@@ -24,14 +24,17 @@ export class UsuarioProvider {
 
   getUsuario(){
     return Promise.resolve(this.storage.get('cliente').then((val) => {
-      console.log('Your age is', val);
+      console.log(val);
+      
     }));
   }
-
+  getUserInfo(id) {
+    return this.http.get(this.urlBase + "cliente/"+id);
+  }
   salvarUsuario(user: any) {
 
       this.setUserInfo('cliente',user);
-
+      console.log("Passou daqui");
       let myHeaders = new Headers({
           'Accept': 'application/json, text/plain, */*',
           'Content-Type': 'application/json'
@@ -39,16 +42,15 @@ export class UsuarioProvider {
       let options = new RequestOptions({
           headers: myHeaders
       });
-        
         user = JSON.stringify(user);
         return new Promise((resolve, reject) => {
           let url = this.urlBase + "salvaruser";
           this.http.post(url, user,options)
             .subscribe((result: any) => {
-              //console.log(result);
+              console.log(result);
             },
             (error) => {
-              //console.log(error);
+              console.log(error);
             });
         });
       }

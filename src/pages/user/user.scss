@@ -1,0 +1,227 @@
+page-user {
+    // Colors
+
+$dark: #03120e;
+$neutral: #EFEFEF;
+$gray: #1a1d1a;
+$yellow: #ffc956;
+$light-gray: rgba(255, 255, 255, 0.4);
+$white: #FFFFFF;
+
+/* This section is for
+ * ------------------------------------
+ *     Default styles
+ * ------------------------------------
+ * */
+// Body
+//
+$body-bg-color: $dark !default;
+$body-color: $light-gray !default;
+$btn-primary: $yellow !default;
+$a-link-color: $yellow !default;
+
+// No font family is set as default
+
+$font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
+$font-size-md: .995rem !default;
+$font-size-sm: .875rem !default;
+
+// Font weights
+$font-weight-normal: normal !default;
+$font-weight-bold: bold !default;
+
+// Font weight and line heigh
+$font-weight-base: $font-weight-normal !default;
+$line-height-base: 1.5 !default;
+$font-letter-spacing: 0.02rem !default;
+
+// Font sizes for headers
+$font-size-h1: 2.5rem !default;
+$font-size-h2: 2rem !default;
+$font-size-h3: 1.75rem !default;
+$font-size-h4: 1.5rem !default;
+$font-size-h5: 1.25rem !default;
+$font-size-h6: 1rem !default;
+
+// Headings defaults
+$headings-margin-bottom: 1rem !default;
+$headings-font-family: inherit !default;
+$headings-font-weight: 500 !default;
+$headings-line-height: 1.5 !default;
+$headings-color: inherit !default;
+
+// Main styles
+*:not(ul) {
+	margin: 0;
+	padding: 0;
+	outline: none;
+	box-sizing: border-box;
+
+	&::after, &::before {
+		box-sizing: border-box;
+	}
+}
+
+h1 {
+	font-size: $font-size-h1;
+}
+
+h2 {
+	font-size: $font-size-h2;
+}
+
+h3 {
+	font-size: $font-size-h3;
+}
+
+h4 {
+	font-size: $font-size-h4;
+}
+
+h5 {
+	font-size: $font-size-h5;
+}
+
+h6 {
+	font-size: $font-size-h6;
+}
+a {
+	text-decoration: none !important;
+	color: $a-link-color;
+
+	&:hover {
+		color: $a-link-color;
+	}
+}
+
+ul {
+	margin: auto;
+	box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: $headings-font-weight;
+	font-family: $headings-font-family;
+	margin-bottom: $headings-margin-bottom;
+	line-height: $headings-line-height;
+	color: $headings-color;
+}
+
+body {
+	font-family: 'Lato', sans-serif;
+	font-size: $font-size-sm;
+	letter-spacing: $font-letter-spacing;
+	line-height: $line-height-base;
+	background: $dark;
+
+	// For codepen purposes
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+@media (min-width: 576px) {
+	body {
+		font-size: $font-size-md;
+	}
+}
+@media (min-width: 768px) {
+	body {
+		font-size: $font-size-base;
+	}
+}
+/* This section is for
+ * ------------------------------------
+ *     Resuable styles
+ * ------------------------------------
+ * */
+
+// Helper classes
+.btn-primary {
+	display: inline-block;
+	cursor: pointer;
+	color: $gray;
+	padding: 0.5rem 1.5rem;
+	margin: 1rem auto;
+	text-decoration: none;
+	border-radius: 5px;
+	background: $yellow;
+	text-align: center;
+	transition: all .5s ease-in-out;
+	font-weight: 700;
+	border: 2px solid transparent;
+
+	&:hover {
+		background: transparent;
+		border-color: $yellow;
+		color: $yellow;
+	}
+}
+
+/* This section is for
+ * ------------------------------------
+ *     Profile styles
+ * ------------------------------------
+ * */
+
+.main-profile {
+	background: $gray;
+	color: $body-color;
+	width: 100%;
+	border: 2px solid rgba(255, 255, 255, 0.1);
+	border-radius: 10px;
+	text-align: center;
+
+	.profile-background {
+		height: 8rem;
+		background: $yellow;
+		border-top-right-radius: 10px;
+		border-top-left-radius: 10px;
+		display: flex;
+		justify-content: flex-end;
+		align-items: flex-start;
+
+		.social-links {
+			display: flex;
+			flex-wrap: wrap;
+			list-style: none;
+			margin: 0.5rem 0.5rem 0 0;
+			padding: 0;
+
+			li a {
+				font-size: 1.2rem;
+				color: $gray;
+				margin: 0.5rem;
+			}
+		}
+	}
+	.profile-header, .profile-body, .profile-footer {
+		padding: 1rem 1rem 0 1rem;
+	}
+
+	.profile-header {
+		margin-top: -5rem;
+
+		img {
+			height: 120px;
+			width: 120px;
+			border-radius: 50%;
+			border: 5px solid $yellow;
+		}
+
+		h1 {
+			margin-bottom: .5rem;
+			line-height: 1;
+		}
+
+		.twitter-handle {
+			font-size: 1.1rem;
+		}
+	}
+
+	.profile-body {
+		padding-bottom: 1rem;
+	}
+}
+
+}

@@ -22,6 +22,9 @@ import { UsuarioProvider } from '../providers/usuario/usuario';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { MapPage } from '../pages/map/map';
 import { Facebook } from '@ionic-native/facebook';
+import { UserPageModule } from '../pages/user/user.module';
+import { FeedPage } from '../pages/feed/feed';
+import { UserPage } from '../pages/user/user';
 
 
 @NgModule({
@@ -39,6 +42,7 @@ import { Facebook } from '@ionic-native/facebook';
     IonicModule.forRoot(MyApp),
     HttpClientModule,
     FeedPageModule,
+    UserPageModule,
     IntroPageModule,
     Ionic2RatingModule,
     IonicStorageModule.forRoot()
@@ -48,6 +52,8 @@ import { Facebook } from '@ionic-native/facebook';
     MyApp,
     HomePage,
     TabsPage,
+    FeedPage,
+    UserPage,
     BeersPage,
     CervejaDetalhePage,
     MapPage
