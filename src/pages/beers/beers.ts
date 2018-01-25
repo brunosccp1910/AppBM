@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { CervejasProvider } from '../../providers/cervejas/cervejas';
-import { CervejaDetalhePage } from '../cerveja-detalhe/cerveja-detalhe';
 import { Storage } from '@ionic/storage/dist/storage';
+import { ComentariosPage } from '../comentarios/comentarios';
 
 /**
  * Generated class for the BeersPage page.
@@ -55,9 +55,11 @@ export class BeersPage {
 
   }
 
-  goToDetalheCervejas(idCerveja){
-    let modal = this.modalCtrl.create(CervejaDetalhePage,{
-      cervejas : this.lista_cervejas
+  goToComentariosPage(Cerveja){
+    console.log('modal vai isso',Cerveja);
+    let modal = this.modalCtrl.create(ComentariosPage,{
+      cerveja : Cerveja
+      
     });
     modal.present();
     modal.onDidDismiss(data => console.log(data));

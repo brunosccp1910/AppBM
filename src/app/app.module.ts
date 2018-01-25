@@ -14,7 +14,6 @@ import { FeedPageModule } from '../pages/feed/feed.module';
 import { IntroPageModule } from '../pages/intro/intro.module';
 import { BeersPage } from '../pages/beers/beers';
 import { CervejasProvider } from '../providers/cervejas/cervejas';
-import { CervejaDetalhePage } from '../pages/cerveja-detalhe/cerveja-detalhe';
 import { Storage, IonicStorageModule } from '@ionic/storage';
 import { Ionic2RatingModule } from 'ionic2-rating';
 import { UsuarioProvider } from '../providers/usuario/usuario';
@@ -25,6 +24,7 @@ import { Facebook } from '@ionic-native/facebook';
 import { UserPageModule } from '../pages/user/user.module';
 import { FeedPage } from '../pages/feed/feed';
 import { UserPage } from '../pages/user/user';
+import { ComentariosPage } from '../pages/comentarios/comentarios';
 
 
 @NgModule({
@@ -33,7 +33,7 @@ import { UserPage } from '../pages/user/user';
     HomePage,
     TabsPage,
     BeersPage,
-    CervejaDetalhePage,
+    ComentariosPage,
     MapPage
   ],
   imports: [
@@ -55,7 +55,7 @@ import { UserPage } from '../pages/user/user';
     FeedPage,
     UserPage,
     BeersPage,
-    CervejaDetalhePage,
+    ComentariosPage,
     MapPage
   ],
   providers: [

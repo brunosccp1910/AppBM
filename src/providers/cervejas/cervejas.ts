@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 
 import 'rxjs/add/operator/map'
 
@@ -20,10 +20,37 @@ export class CervejasProvider {
   getCervejasCliente() {
     return this.http.get(this.urlBase + "cervejas/cliente");
   }
+  getComentario(id) {
+    return this.http.get(this.urlBase + "getcomentario/"+id);
+  }
+  setComentario(comentario : any){
+    console.log("Passou daqui");
+    let myHeaders = new Headers({
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+    });
+    let options = new RequestOptions({
+        headers: myHeaders
+    });
+    comentario = JSON.stringify(comentario);
+    console.log("Vaiaushaushasu:",comentario);
+
+      return new Promise((resolve, reject) => {
+        let url = this.urlBase + "setcomentario";
+        this.http.post(url, comentario,options)
+          .subscribe((result: any) => {
+            console.log(result);
+          },
+          (error) => {
+            console.log(error);
+          });
+      });
+    }
+}
 
   
       
-}
+
 
 
 
