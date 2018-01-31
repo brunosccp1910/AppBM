@@ -93,6 +93,5 @@
         <variable name="API_KEY_FOR_ANDROID" value="AIzaSyBU12JP0qRFceOOQVt8S6DUQYRqUk-A_pg" />
         <variable name="API_KEY_FOR_IOS" value="AIzaSyBMyMuh5Rk22EMgybdxVod-wTPn1Zd5-K4" />
     </plugin>
-    <plugin name="cordova-plugin-statusbar" spec="^2.4.1" />
     <engine name="android" spec="^7.0.0" />
 </widget>

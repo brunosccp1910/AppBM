@@ -18,7 +18,7 @@ export class ComentariosPage {
   public userdata =  new Array<any>();
   public comentarios =  new Array<any>();
   public cerveja =  new Array<any>();
-
+  public qtd_likes:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public storage:Storage,public cervejaProvider:CervejasProvider) {
     this.cerveja = this.navParams.get('cerveja');
@@ -72,6 +72,31 @@ export class ComentariosPage {
   }
   getComentarios(){
     
+  }
+
+  addLike(id){
+
+    this.cervejaProvider.addNumLikesComentario(id).subscribe(
+      data => {
+        //console.log(data);
+      }, error => {
+        console.log(error);
+      }
+    )
+  }
+
+  getLike(id){
+
+    this.cervejaProvider.getNumLikesComentario(id).subscribe(
+      data => {
+        const response = (data as any);
+        const objeto_retorno = JSON.parse(response._body);
+        this.qtd_likes = objeto_retorno;
+        console.log(this.qtd_likes);
+      }, error => {
+        console.log(error);
+      }
+    )
   }
 
 }

@@ -20,6 +20,13 @@ export class CervejasProvider {
   getCervejasCliente() {
     return this.http.get(this.urlBase + "cervejas/cliente");
   }
+  getNumLikesComentario(id){
+    return this.http.get(this.urlBase + "comentario/get/numlikescomentario/"+id);
+  }
+  addNumLikesComentario(id){
+    console.log("Entrei",id," - ",this.urlBase + "comentario/add/numlikescomentario/"+id);
+    return this.http.get(this.urlBase + "comentario/add/numlikescomentario/"+id);
+  }
   getComentario(id) {
     return this.http.get(this.urlBase + "getcomentario/"+id);
   }
@@ -33,7 +40,6 @@ export class CervejasProvider {
         headers: myHeaders
     });
     comentario = JSON.stringify(comentario);
-    console.log("Vaiaushaushasu:",comentario);
 
       return new Promise((resolve, reject) => {
         let url = this.urlBase + "setcomentario";

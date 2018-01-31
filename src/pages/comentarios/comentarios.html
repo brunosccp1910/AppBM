@@ -49,6 +49,10 @@
                 
           <ion-card-content>
             <p>{{comentario.ds_comentario}}</p>
+            <button ion-button icon-only ion-button color="primary" clear small icon-start (click)="addLike(comentario.id_app_comentario)" ng-disabled="expression">
+              <ion-icon name="thumbs-up"></ion-icon>
+            </button>
+            {{comentario.cd_qtd_likes}} pessoas curtiram isso
           </ion-card-content>
         
        
