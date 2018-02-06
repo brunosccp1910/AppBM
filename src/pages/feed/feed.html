@@ -8,36 +8,31 @@
 </ion-header>
 
 <ion-content>
-    <ion-card>
+    <ion-card *ngFor="let estabelecimento of lista_estabelecimentos">
         <ion-grid>
           <ion-row>
-            <ion-col col-6>
+            <ion-col col-3>
               <img src="assets/images/logo.jpg" />
             </ion-col>
-            <ion-col col-6>
+            <ion-col col-5>
               <ion-row>
-                <h2>Velho John </h2> 
+                <h2>{{estabelecimento.ds_nome_fantasia}}</h2> 
               </ion-row>
-              Horário: 19:00 – 02:00
-              <ion-row>
-    
-              </ion-row>
-              Telefone: (98) 99235-2412
-      
-              <button small (click)="goToBeers()" ion-button icon-left outline item-end>
+            </ion-col>
+            <ion-col col-3>
+              <button small (click)="goToBeers(estabelecimento)" ion-button icon-left outline item-end>
                 <ion-icon name="beer"></ion-icon>
                 Cervejas
               </button>
-              <button small (click)="goToMaps()" ion-button icon-left outline item-end>
+
+              <button small (click)="goToMaps(estabelecimento)" ion-button icon-left outline item-end>
                   <ion-icon name="pin"></ion-icon>
                   Ver no Mapa
-                </button>
+              </button>
+
             </ion-col>
           </ion-row>
-          <ion-row>
-              Av. dos Holandeses, 9 - Calhau
-              
-          </ion-row>
+
         </ion-grid>
       </ion-card>
 </ion-content>

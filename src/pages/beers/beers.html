@@ -14,49 +14,98 @@
 
 
 <ion-content class="card-background-page"  >
-
-  <ion-card  *ngFor="let cerveja of lista_cervejas"  >
-    <div class="card-title">{{cerveja.ds_cerveja_abrev}}</div>
-    <ion-grid>
-      <ion-row >
-        <ion-col col-3 >
-          <img [src]='cerveja.im_cerveja' />
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-list *ngIf="flag; else notLoggedIn" >  
+    <ion-card  *ngFor="let cerveja of lista_cervejasAuxiliar"  >
+      <div class="card-title">{{cerveja.ds_cerveja_abrev}}</div>
+      <ion-grid>
+        <ion-row >
+          <ion-col col-3 >
+            <img [src]='cerveja.im_cerveja' />
+            
+          </ion-col>
           
-        </ion-col>
-        
-        <ion-col col-8 >
-          <ion-row >
-            <ion-col col-3 >
-              <img [src]='cerveja.im_pais' />
-            </ion-col>
-            <ion-col col-9 >
-              {{cerveja.ds_pais}}
-            </ion-col>
+          <ion-col col-8 >
             <ion-row >
-              <ion-row>
-                  {{cerveja.ds_estilo_abrev}}
+              <ion-col col-3 >
+                <img [src]='cerveja.im_pais' />
+              </ion-col>
+              <ion-col col-9 >
+                {{cerveja.ds_pais}}
+              </ion-col>
+              <ion-row >
+                <ion-row>
+                    {{cerveja.ds_estilo_abrev}}
+                </ion-row>
+                
               </ion-row>
-              
             </ion-row>
-          </ion-row>
-          <ion-row >
-              R${{cerveja.vl_preco_cerveja_sug}}
-          </ion-row>
-     
-          <ion-buttons end>
-              <button (click)="goToComentariosPage(cerveja)" ion-button icon-only small >
-                  <ion-icon name="ios-open-outline"></ion-icon>
-              </button>
-          </ion-buttons>
+            <ion-row >
+                R${{cerveja.vl_preco_cerveja_sug}}
+            </ion-row>
+      
+            <ion-buttons end>
+                <button (click)="goToComentariosPage(cerveja)" ion-button icon-only small >
+                    <ion-icon name="ios-open-outline"></ion-icon>
+                </button>
+            </ion-buttons>
 
-        </ion-col>
-      </ion-row>
-      <ion-row >          
-        <rating [(ngModel)]="rate" readOnly="false" max="5" value="3.4" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star"
-          nullable="false">
-        </rating>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
+          </ion-col>
+        </ion-row>
+        <ion-row >          
+          <rating [(ngModel)]="rate" readOnly="false" max="5" value="3.4" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star"
+            nullable="false">
+          </rating>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+</ion-list>
+<ng-template #notLoggedIn>
+  <ion-list>  
+    <ion-card  *ngFor="let cerveja of lista_cervejas"  >
+      <div class="card-title">{{cerveja.ds_cerveja_abrev}}</div>
+      <ion-grid>
+        <ion-row >
+          <ion-col col-3 >
+            <img [src]='cerveja.im_cerveja' />
+            
+          </ion-col>
+          
+          <ion-col col-8 >
+            <ion-row >
+              <ion-col col-3 >
+                <img [src]='cerveja.im_pais' />
+              </ion-col>
+              <ion-col col-9 >
+                {{cerveja.ds_pais}}
+              </ion-col>
+              <ion-row >
+                <ion-row>
+                    {{cerveja.ds_estilo_abrev}}
+                </ion-row>
+                
+              </ion-row>
+            </ion-row>
+            <ion-row >
+                R${{cerveja.vl_preco_cerveja_sug}}
+            </ion-row>
+      
+            <ion-buttons end>
+                <button (click)="goToComentariosPage(cerveja)" ion-button icon-only small >
+                    <ion-icon name="ios-open-outline"></ion-icon>
+                </button>
+            </ion-buttons>
+
+          </ion-col>
+        </ion-row>
+        <ion-row >          
+          <rating [(ngModel)]="rate" readOnly="false" max="5" value="3.4" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star"
+            nullable="false">
+          </rating>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+</ion-list>
+</ng-template>
 
 </ion-content>

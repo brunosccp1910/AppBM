@@ -17,8 +17,11 @@ export class CervejasProvider {
   getCervejas() {
     return this.http.get(this.urlBase + "cervejas");
   }
-  getCervejasCliente() {
-    return this.http.get(this.urlBase + "cervejas/cliente");
+  getEstabelecimentos() {
+    return this.http.get(this.urlBase + "estabelecimento");
+  }
+  getCervejasCliente(id) {
+    return this.http.get(this.urlBase + "cervejas/cliente/"+id);
   }
   getNumLikesComentario(id){
     return this.http.get(this.urlBase + "comentario/get/numlikescomentario/"+id);

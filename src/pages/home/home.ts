@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { PlacesPage } from '../places/places';
+import { FeedPage } from '../feed/feed';
 
 
 @Component({
@@ -12,15 +14,21 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class HomePage {
   userInfo:any
-  constructor(private usuarioProvider: UsuarioProvider,navParams: NavParams) {
+  constructor(private usuarioProvider: UsuarioProvider,public navParams: NavParams,public navCtrl: NavController,
+  ) {
     
   }
 
   ionViewDidLoad() {
       this.usuarioProvider.getUsuario().then((val) => {
-        console.log(val);
         this.userInfo = val;
       });
+  }
 
+  goToPlaces(){
+    this.navCtrl.push(PlacesPage);
+  }
+  goToFeed(){
+    this.navCtrl.push(FeedPage);
   }
 }

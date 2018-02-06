@@ -25,6 +25,8 @@ import { UserPageModule } from '../pages/user/user.module';
 import { FeedPage } from '../pages/feed/feed';
 import { UserPage } from '../pages/user/user';
 import { ComentariosPage } from '../pages/comentarios/comentarios';
+import { Geolocation } from '@ionic-native/geolocation'
+import { PlacesPage } from '../pages/places/places';
 
 
 @NgModule({
@@ -34,6 +36,7 @@ import { ComentariosPage } from '../pages/comentarios/comentarios';
     TabsPage,
     BeersPage,
     ComentariosPage,
+    PlacesPage,
     MapPage
   ],
   imports: [
@@ -55,6 +58,7 @@ import { ComentariosPage } from '../pages/comentarios/comentarios';
     FeedPage,
     UserPage,
     BeersPage,
+    PlacesPage,
     ComentariosPage,
     MapPage
   ],
@@ -63,6 +67,7 @@ import { ComentariosPage } from '../pages/comentarios/comentarios';
     SplashScreen,
     UsuarioProvider,
     GoogleMaps,
+    Geolocation,
     Facebook,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
     
