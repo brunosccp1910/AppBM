@@ -18,7 +18,6 @@ import { Storage, IonicStorageModule } from '@ionic/storage';
 import { Ionic2RatingModule } from 'ionic2-rating';
 import { UsuarioProvider } from '../providers/usuario/usuario';
 
-import { GoogleMaps } from '@ionic-native/google-maps';
 import { MapPage } from '../pages/map/map';
 import { Facebook } from '@ionic-native/facebook';
 import { UserPageModule } from '../pages/user/user.module';
@@ -66,7 +65,6 @@ import { PlacesPage } from '../pages/places/places';
     StatusBar,
     SplashScreen,
     UsuarioProvider,
-    GoogleMaps,
     Geolocation,
     Facebook,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

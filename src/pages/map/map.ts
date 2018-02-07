@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BeersPage } from '../beers/beers';
 import {Platform} from "ionic-angular";
 import { Geolocation ,GeolocationOptions ,Geoposition ,PositionError } from '@ionic-native/geolocation'; 
-import {GoogleMaps, GoogleMap, LatLng, GoogleMapsEvent, GoogleMapOptions, CameraPosition, MarkerOptions, Marker, ILatLng} from "@ionic-native/google-maps";
 
 declare var google;
 
@@ -11,9 +10,7 @@ declare var google;
 @Component({
   selector: 'page-map',
   templateUrl: 'map.html',
-  providers: [
-    GoogleMaps
-  ]
+ 
 })
 export class MapPage {
   //map: GoogleMap;
@@ -29,7 +26,6 @@ export class MapPage {
  
   constructor(
     private navCtrl: NavController,
-    private googleMaps: GoogleMaps,
     private platform: Platform,
     public navParams: NavParams,
     private geolocation : Geolocation
