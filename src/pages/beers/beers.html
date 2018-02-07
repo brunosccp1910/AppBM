@@ -13,7 +13,22 @@
 </ion-header>
 
 
-<ion-content class="card-background-page"  >
+<ion-content class="card-background-page">
+    <ion-card>      
+        <ion-item>
+          <ion-icon name="beer" item-start large></ion-icon>
+          <h2>{{estabelecimento.ds_nome_fantasia}}</h2>
+          <p>Descrição do estabelecimento aqui</p>
+        </ion-item>
+
+      
+        <ion-item>
+          <span item-left>18 min</span>
+          <span item-left>(2.6 mi)</span>
+         
+        </ion-item>
+      
+      </ion-card>
   <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
   <ion-list *ngIf="flag; else notLoggedIn" >  
     <ion-card  *ngFor="let cerveja of lista_cervejasAuxiliar"  >

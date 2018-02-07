@@ -31,6 +31,7 @@ export class BeersPage {
     private storage:Storage
   ) {
     this.estabelecimento = this.navParams.get('estabelecimento');
+    console.log(this.estabelecimento);
   }
 
   

@@ -9,7 +9,7 @@
 
 <ion-content>
     <ion-card *ngFor="let estabelecimento of lista_estabelecimentos">
-        <ion-grid>
+        <ion-grid  (click)="goToBeers(estabelecimento)">
           <ion-row>
             <ion-col col-3>
               <img src="assets/images/logo.jpg" />
@@ -20,19 +20,14 @@
               </ion-row>
             </ion-col>
             <ion-col col-3>
-              <button small (click)="goToBeers(estabelecimento)" ion-button icon-left outline item-end>
-                <ion-icon name="beer"></ion-icon>
-                Cervejas
-              </button>
-
-              <button small (click)="goToMaps(estabelecimento)" ion-button icon-left outline item-end>
-                  <ion-icon name="pin"></ion-icon>
-                  Ver no Mapa
-              </button>
-
+              
             </ion-col>
           </ion-row>
 
         </ion-grid>
+        <button small (click)="goToMaps(estabelecimento)" ion-button icon-left outline item-end>
+            <ion-icon name="pin"></ion-icon>
+            Veja como chegar
+        </button>
       </ion-card>
 </ion-content>
