@@ -6,7 +6,7 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 export class UsuarioProvider {
   myTempArray: (map: any) => any;
   private urlBase = "http://app.beercomigo.com/";
-
+  public idUser:any
   constructor(private storage: Storage, public http: Http) {
   }
 
@@ -17,11 +17,25 @@ export class UsuarioProvider {
       nome: dataUser.username,
       email: dataUser.email ,
       imagem: dataUser.picture,
-      id : dataUser.id
+      id : this.idUser
       };
      this.storage.set(key,user);
   }
 
+  getUserIdHttp() {
+    this.storage.get('cliente').then((val) => {
+      this.getUserId(val.id).subscribe(
+        data => {
+          const response = (data as any);
+          const objeto_retorno = JSON.parse(response._body);
+          console.log(objeto_retorno);
+          this.idUser = objeto_retorno['id_app_usuario'];
+        }, error => {
+          console.log(error);
+        }
+      )
+    });
+  }
 
   getUsuario(){
     return Promise.resolve(this.storage.get('cliente').then((val) => {
@@ -31,6 +45,9 @@ export class UsuarioProvider {
   }
   getUserInfo(id) {
     return this.http.get(this.urlBase + "cliente/"+id);
+  }
+  getUserId(dsusuario) {
+    return this.http.get(this.urlBase + "userid/"+dsusuario);
   }
   salvarUsuario(user: any) {
 

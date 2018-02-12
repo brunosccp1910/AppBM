@@ -66,16 +66,7 @@ export class ComentariosPage {
       console.log(this.userdata);
     });
   }
-  doRefresh(refresher) {
-    this.atualizarComentariosTela(); //modificado
-    setTimeout(() => {
-      refresher.complete();
-    }, 2000);
-  }
-  getComentarios(){
-    
-  }
-
+  
   addLike(id){
     this.cervejaProvider.addNumLikesComentario(id).subscribe(
       data => {
