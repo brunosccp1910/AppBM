@@ -12,11 +12,12 @@ export class UsuarioProvider {
 
   setUserInfo(key:string, dataUser: any){
     dataUser = JSON.parse(JSON.stringify(dataUser));
+    console.log("Estou setando storage",dataUser);
     var user={
       nome: dataUser.username,
       email: dataUser.email ,
       imagem: dataUser.picture,
-      //id : dataUser.id
+      id : dataUser.id
       };
      this.storage.set(key,user);
   }
@@ -24,7 +25,7 @@ export class UsuarioProvider {
 
   getUsuario(){
     return Promise.resolve(this.storage.get('cliente').then((val) => {
-      console.log(val);
+      console.log("getusuario",val);
       
     }));
   }

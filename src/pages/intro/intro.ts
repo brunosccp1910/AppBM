@@ -39,8 +39,9 @@ export class IntroPage {
   loginWithFB() {
     this.facebook.login(['email', 'public_profile']).then((response: FacebookLoginResponse) => {
       this.facebook.api('me?fields=id,name,email,first_name,picture.width(720).height(720).as(picture_large)', []).then(profile => {
-        console.log(profile);
+        console.log("profile",profile);
         this.userData = {email: profile['email'],id: profile['id'], first_name: profile['first_name'], picture: profile['picture_large']['data']['url'], username: profile['name']}
+        console.log("Mandando UserData",this.userData)
         this.setUserData(this.userData);
         this.goToTabsPage();
       });

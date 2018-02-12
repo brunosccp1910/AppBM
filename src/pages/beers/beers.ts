@@ -71,7 +71,7 @@ export class BeersPage {
         const response = (data as any);
         const objeto_retorno = JSON.parse(response._body);
         this.lista_cervejas = objeto_retorno;
-        //console.log(data);
+        console.log(data);
       }, error => {
         console.log(error);
       }
@@ -81,7 +81,7 @@ export class BeersPage {
   getCervejas(){
      this.lista_cervejasAuxiliar = this.lista_cervejas;
   }
-
+ 
   getItems(ev: any) {
     // Reset items back to all of the items
     this.flag = true;
@@ -98,5 +98,15 @@ export class BeersPage {
       console.log("GetItems",val,this.lista_cervejasAuxiliar);
     }
   }
+
+  jaProvei(idCerveja) {
+    var like = {iduser: this.userdata['id'],idcerveja:idCerveja}
+    this.cervejasProvider.jaProvei(like);
+  }
+  setLikeBeer(idCerveja) {
+    var like = {iduser: this.userdata['id'],idcerveja:idCerveja}
+    this.cervejasProvider.setLikeBeer(like);
+  }
+
 
 }

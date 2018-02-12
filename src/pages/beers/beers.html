@@ -58,12 +58,21 @@
             <ion-row >
                 R${{cerveja.vl_preco_cerveja_sug}}
             </ion-row>
-      
-            <ion-buttons end>
-                <button (click)="goToComentariosPage(cerveja)" ion-button icon-only small >
-                    <ion-icon name="ios-open-outline"></ion-icon>
-                </button>
-            </ion-buttons>
+            <ion-buttons >
+              <button (click)="goToComentariosPage(cerveja)" ion-button  >
+                  <ion-icon name="chatbubbles"></ion-icon>
+              </button>
+          </ion-buttons>
+          <ion-buttons >
+            <button (click)="jaProvei(cerveja)" ion-button  >
+                <ion-icon name="checkmark-circle-outline"></ion-icon>
+            </button>
+          </ion-buttons>
+        <ion-buttons >
+          <button (click)="setLikeBeer(cerveja.id_cerveja)" ion-button  >
+              <ion-icon name="heart-outline"></ion-icon>
+          </button>
+        </ion-buttons>
 
           </ion-col>
         </ion-row>
@@ -105,11 +114,21 @@
                 R${{cerveja.vl_preco_cerveja_sug}}
             </ion-row>
       
-            <ion-buttons end>
-                <button (click)="goToComentariosPage(cerveja)" ion-button icon-only small >
-                    <ion-icon name="ios-open-outline"></ion-icon>
-                </button>
-            </ion-buttons>
+            <ion-buttons >
+              <button (click)="goToComentariosPage(cerveja)" ion-button  >
+                  <ion-icon name="chatbubbles"></ion-icon>
+              </button>
+          </ion-buttons>
+          <ion-buttons >
+            <button (click)="jaProvei(cerveja.id_cerveja)" ion-button  >
+                <ion-icon name="checkmark-circle-outline"></ion-icon>
+            </button>
+          </ion-buttons>
+        <ion-buttons >
+          <button (click)="setLikeBeer(cerveja.id_cerveja)" ion-button  >
+              <ion-icon name="heart-outline"></ion-icon>
+          </button>
+        </ion-buttons>
 
           </ion-col>
         </ion-row>

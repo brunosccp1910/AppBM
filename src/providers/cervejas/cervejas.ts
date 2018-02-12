@@ -27,14 +27,16 @@ export class CervejasProvider {
     return this.http.get(this.urlBase + "comentario/get/numlikescomentario/"+id);
   }
   addNumLikesComentario(id){
-    console.log("Entrei",id," - ",this.urlBase + "comentario/add/numlikescomentario/"+id);
     return this.http.get(this.urlBase + "comentario/add/numlikescomentario/"+id);
+  }
+  setLsikeBeer(ids){
+    console.log(this.urlBase + "cerveja/setlike/"+ids['idcerveja']+"/"+ids['iduser']);
+    return this.http.get(this.urlBase + "cerveja/setlike/"+ids['idcerveja']+"/"+ids['iduser']);
   }
   getComentario(id) {
     return this.http.get(this.urlBase + "getcomentario/"+id);
   }
   setComentario(comentario : any){
-    console.log("Passou daqui");
     let myHeaders = new Headers({
         'Accept': 'application/json, text/plain, */*',
         'Content-Type': 'application/json'
@@ -55,6 +57,49 @@ export class CervejasProvider {
           });
       });
     }
+    setLikeBeer(ids : any){
+      let myHeaders = new Headers({
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+      });
+      let options = new RequestOptions({
+          headers: myHeaders
+      });
+      ids = JSON.stringify(ids);
+  
+        return new Promise((resolve, reject) => {
+          let url = this.urlBase + "setlikebeer";
+          this.http.post(url, ids,options)
+            .subscribe((result: any) => {
+              console.log(result);
+            },
+            (error) => {
+              console.log(error);
+            });
+        });
+      }
+
+      jaProvei(ids : any){
+        let myHeaders = new Headers({
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        });
+        let options = new RequestOptions({
+            headers: myHeaders
+        });
+        ids = JSON.stringify(ids);
+    
+          return new Promise((resolve, reject) => {
+            let url = this.urlBase + "japrovei";
+            this.http.post(url, ids,options)
+              .subscribe((result: any) => {
+                console.log(result);
+              },
+              (error) => {
+                console.log(error);
+              });
+          });
+        }
 }
 
   
