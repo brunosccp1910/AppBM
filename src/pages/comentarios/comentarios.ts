@@ -37,7 +37,7 @@ export class ComentariosPage {
         console.log(error);
       }
     )
-    this.storage.get('cliente').then((val) => {
+    this.storage.get('hash').then((val) => {
       this.userdata = val;
       console.log(this.userdata);
     });
@@ -61,14 +61,14 @@ export class ComentariosPage {
         console.log(error);
       }
     )
-    this.storage.get('cliente').then((val) => {
+    this.storage.get('hash').then((val) => {
       this.userdata = val;
       console.log(this.userdata);
     });
   }
   
-  addLike(id){
-    this.cervejaProvider.addNumLikesComentario(id).subscribe(
+  addLike(idComentario){
+    this.cervejaProvider.addNumLikesComentario(idComentario).subscribe(
       data => {
         this.atualizarComentariosTela(); //modificado
       }, error => {
@@ -77,9 +77,9 @@ export class ComentariosPage {
     )
   }
 
-  getLike(id){
+  getLike(idComentario){
 
-    this.cervejaProvider.getNumLikesComentario(id).subscribe(
+    this.cervejaProvider.getNumLikesComentario(idComentario).subscribe(
       data => {
         const response = (data as any);
         const objeto_retorno = JSON.parse(response._body);

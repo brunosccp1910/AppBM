@@ -14,132 +14,125 @@
 
 
 <ion-content class="card-background-page">
-    <ion-card>      
-        <ion-item>
-          <ion-icon name="beer" item-start large></ion-icon>
-          <h2>{{estabelecimento.ds_nome_fantasia}}</h2>
-          <p>Descrição do estabelecimento aqui</p>
-        </ion-item>
+  <ion-card>
+    <ion-item>
+      <ion-icon name="beer" item-start large></ion-icon>
+      <h2>{{estabelecimento.ds_nome_fantasia}}</h2>
+      <p>Descrição do estabelecimento aqui</p>
+    </ion-item>
 
-      
-        <ion-item>
-          <span item-left>18 min</span>
-          <span item-left>(2.6 mi)</span>
-         
-        </ion-item>
-      
-      </ion-card>
+
+    <ion-item>
+      <span item-left>18 min</span>
+      <span item-left>(2.6 mi)</span>
+
+    </ion-item>
+
+  </ion-card>
   <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
-  <ion-list *ngIf="flag; else notLoggedIn" >  
-    <ion-card  *ngFor="let cerveja of lista_cervejasAuxiliar"  >
+  <ion-list *ngIf="flag; else notLoggedIn">
+    <ion-card *ngFor="let cerveja of lista_cervejasAuxiliar">
       <div class="card-title">{{cerveja.ds_cerveja_abrev}}</div>
       <ion-grid>
-        <ion-row >
-          <ion-col col-3 >
-            <img [src]='cerveja.im_cerveja' />
-            
-          </ion-col>
-          
-          <ion-col col-8 >
-            <ion-row >
-              <ion-col col-3 >
-                <img [src]='cerveja.im_pais' />
+          <ion-row>
+              <ion-col col-3>
+                <img [src]='cerveja.im_cerveja' />
               </ion-col>
-              <ion-col col-9 >
-                {{cerveja.ds_pais}}
+  
+              <ion-col col-6>
+                <ion-col col-2>
+                  <ion-row>
+                      <img [src]='cerveja.im_pais' />
+                  </ion-row>
+                </ion-col>   
+                  <ion-row>
+                      {{cerveja.ds_pais}}
+                  </ion-row>
+                  <ion-row>
+                      {{cerveja.ds_estilo_abrev}}
+                  </ion-row>
+                  <ion-row>
+                      R${{cerveja.vl_preco_cerveja_sug}}
+                  </ion-row>
               </ion-col>
-              <ion-row >
+  
+              <ion-col col-2>
+                  <ion-buttons>
+                    <button (click)="goToComentariosPage(cerveja)" ion-button icon-only clear>
+                      <ion-icon name="chatbubbles"></ion-icon>
+                    </button>
+                  </ion-buttons>
+                  <ion-buttons>
+                    <button (click)="jaProvei(cerveja.id_cerveja)" ion-button icon-only clear>
+                      <ion-icon name="checkmark-circle-outline"></ion-icon>
+                    </button>
+                  </ion-buttons>
+                  <ion-buttons>
+                    <button (click)="setLikeBeer(cerveja.id_cerveja)" ion-button icon-only clear>
+                      <ion-icon name="heart-outline"></ion-icon>
+                    </button>
+                  </ion-buttons>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <rating [(ngModel)]="rate" readOnly="false" max="5" value="3.4" emptyStarIconName="star-outline" halfStarIconName="star-half"
+                starIconName="star" nullable="false">
+              </rating>
+            </ion-row>
+      </ion-grid>
+    </ion-card>
+  </ion-list>
+  <ng-template #notLoggedIn>
+    <ion-list>
+      <ion-card *ngFor="let cerveja of lista_cervejas">
+        <div class="card-title">{{cerveja.ds_cerveja_abrev}}</div>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-3>
+              <img [src]='cerveja.im_cerveja' />
+            </ion-col>
+
+            <ion-col col-2>
+              <img [src]='cerveja.im_pais' />  
+            </ion-col>
+            <ion-col col-5>
+                <ion-row>
+                    {{cerveja.ds_pais}}
+                </ion-row>
                 <ion-row>
                     {{cerveja.ds_estilo_abrev}}
                 </ion-row>
-                
-              </ion-row>
-            </ion-row>
-            <ion-row >
-                R${{cerveja.vl_preco_cerveja_sug}}
-            </ion-row>
-            <ion-buttons >
-              <button (click)="goToComentariosPage(cerveja)" ion-button  >
-                  <ion-icon name="chatbubbles"></ion-icon>
-              </button>
-          </ion-buttons>
-          <ion-buttons >
-            <button (click)="jaProvei(cerveja)" ion-button  >
-                <ion-icon name="checkmark-circle-outline"></ion-icon>
-            </button>
-          </ion-buttons>
-        <ion-buttons >
-          <button (click)="setLikeBeer(cerveja.id_cerveja)" ion-button  >
-              <ion-icon name="heart-outline"></ion-icon>
-          </button>
-        </ion-buttons>
-
-          </ion-col>
-        </ion-row>
-        <ion-row >          
-          <rating [(ngModel)]="rate" readOnly="false" max="5" value="3.4" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star"
-            nullable="false">
-          </rating>
-        </ion-row>
-      </ion-grid>
-    </ion-card>
-</ion-list>
-<ng-template #notLoggedIn>
-  <ion-list>  
-    <ion-card  *ngFor="let cerveja of lista_cervejas"  >
-      <div class="card-title">{{cerveja.ds_cerveja_abrev}}</div>
-      <ion-grid>
-        <ion-row >
-          <ion-col col-3 >
-            <img [src]='cerveja.im_cerveja' />
-            
-          </ion-col>
-          
-          <ion-col col-8 >
-            <ion-row >
-              <ion-col col-3 >
-                <img [src]='cerveja.im_pais' />
-              </ion-col>
-              <ion-col col-9 >
-                {{cerveja.ds_pais}}
-              </ion-col>
-              <ion-row >
                 <ion-row>
-                    {{cerveja.ds_estilo_abrev}}
+                    R${{cerveja.vl_preco_cerveja_sug}}
                 </ion-row>
-                
-              </ion-row>
-            </ion-row>
-            <ion-row >
-                R${{cerveja.vl_preco_cerveja_sug}}
-            </ion-row>
-      
-            <ion-buttons >
-              <button (click)="goToComentariosPage(cerveja)" ion-button  >
-                  <ion-icon name="chatbubbles"></ion-icon>
-              </button>
-          </ion-buttons>
-          <ion-buttons >
-            <button (click)="jaProvei(cerveja.id_cerveja)" ion-button  >
-                <ion-icon name="checkmark-circle-outline"></ion-icon>
-            </button>
-          </ion-buttons>
-        <ion-buttons >
-          <button (click)="setLikeBeer(cerveja.id_cerveja)" ion-button  >
-              <ion-icon name="heart-outline"></ion-icon>
-          </button>
-        </ion-buttons>
-
           </ion-col>
-        </ion-row>
-        <ion-row >          
-          <rating [(ngModel)]="rate" readOnly="false" max="5" value="3.4" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star"
-            nullable="false">
-          </rating>
-        </ion-row>
-      </ion-grid>
-    </ion-card>
-</ion-list>
-</ng-template>
+
+            <ion-col col-2>
+                <ion-buttons>
+                  <button (click)="goToComentariosPage(cerveja)" ion-button icon-only clear>
+                    <ion-icon name="chatbubbles"></ion-icon>
+                  </button>
+                </ion-buttons>
+                <ion-buttons>
+                  <button (click)="jaProvei(cerveja.id_cerveja)" ion-button icon-only clear>
+                    <ion-icon name="checkmark-circle-outline"></ion-icon>
+                  </button>
+                </ion-buttons>
+                <ion-buttons>
+                  <button (click)="setLikeBeer(cerveja.id_cerveja)" ion-button icon-only clear>
+                    <ion-icon name="heart-outline"></ion-icon>
+                  </button>
+                </ion-buttons>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <rating [(ngModel)]="rate" readOnly="false" max="5" value="3.4" emptyStarIconName="star-outline" halfStarIconName="star-half"
+              starIconName="star" nullable="false">
+            </rating>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+    </ion-list>
+  </ng-template>
 
 </ion-content>

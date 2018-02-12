@@ -25,8 +25,9 @@ import { FeedPage } from '../pages/feed/feed';
 import { UserPage } from '../pages/user/user';
 import { ComentariosPage } from '../pages/comentarios/comentarios';
 import { Geolocation } from '@ionic-native/geolocation'
-import { PlacesPage } from '../pages/places/places';
-
+import { Device } from '@ionic-native/device';
+import { BeerlistPage } from '../pages/beerlist/beerlist';
+import { BeerlistPageModule } from '../pages/beerlist/beerlist.module';
 
 @NgModule({
   declarations: [
@@ -34,8 +35,8 @@ import { PlacesPage } from '../pages/places/places';
     HomePage,
     TabsPage,
     BeersPage,
+    BeerlistPage,
     ComentariosPage,
-    PlacesPage,
     MapPage
   ],
   imports: [
@@ -57,7 +58,7 @@ import { PlacesPage } from '../pages/places/places';
     FeedPage,
     UserPage,
     BeersPage,
-    PlacesPage,
+    BeerlistPage,
     ComentariosPage,
     MapPage
   ],
@@ -67,6 +68,7 @@ import { PlacesPage } from '../pages/places/places';
     UsuarioProvider,
     Geolocation,
     Facebook,
+    Device,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
     
   ]

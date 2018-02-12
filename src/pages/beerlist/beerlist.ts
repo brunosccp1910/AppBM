@@ -1,48 +1,38 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
-import { CervejasProvider } from '../../providers/cervejas/cervejas';
-import { Storage } from '@ionic/storage/dist/storage';
 import { ComentariosPage } from '../comentarios/comentarios';
+import { CervejasProvider } from '../../providers/cervejas/cervejas';
+import { FeedPage } from '../feed/feed';
 
 
 
 @IonicPage()
 @Component({
-  selector: 'page-beers',
-  templateUrl: 'beers.html',
+  selector: 'page-beerlist',
+  templateUrl: 'beerlist.html',
   providers : [
     CervejasProvider
   ]
 })
-export class BeersPage {
+export class BeerlistPage {
   public lista_cervejas =  new Array<any>();
   public lista_cervejasAuxiliar =  new Array<any>();
   public userdata =  new Array<any>();
   public estabelecimento:any;
   public nome_cerveja:string;
   public flag:boolean = false;
+  
+  constructor(public navCtrl: NavController,
+     public navParams: NavParams,
+     public cervejasProvider: CervejasProvider,
+     public modalCtrl: ModalController,
 
-
-  constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    private cervejasProvider: CervejasProvider,
-    public modalCtrl: ModalController,
-    private storage:Storage
   ) {
-    this.estabelecimento = this.navParams.get('estabelecimento');
-    console.log(this.estabelecimento);
   }
 
-  
-
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BeersPage',this.estabelecimento);
-    this.storage.get('cliente').then((val) => {
-      this.userdata = val;
-      console.log(this.userdata);
-    });  
-    this.cervejasProvider.getCervejasCliente(this.estabelecimento['id_cliente']).subscribe(
+
+    this.cervejasProvider.getCervejasCliente(5).subscribe(
       data => {
         const response = (data as any);
         const objeto_retorno = JSON.parse(response._body);
@@ -66,7 +56,7 @@ export class BeersPage {
   }
 
   initializeItems() {
-    this.cervejasProvider.getCervejasCliente(this.estabelecimento['id_cliente']).subscribe(
+    this.cervejasProvider.getCervejasCliente(5).subscribe(
       data => {
         const response = (data as any);
         const objeto_retorno = JSON.parse(response._body);
@@ -108,5 +98,11 @@ export class BeersPage {
     this.cervejasProvider.setLikeBeer(like);
   }
 
+  goToEstabelecimentos(idCerveja){
+    this.navCtrl.push(FeedPage, {
+      page: 'beerlist',
+      idCerveja: idCerveja
+    });  
+  }
 
 }

@@ -1,0 +1,122 @@
+<!--
+  Generated template for the BeerlistPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>beerlist</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-list *ngIf="flag; else notLoggedIn">
+    <ion-card *ngFor="let cerveja of lista_cervejasAuxiliar">
+      <div class="card-title">{{cerveja.ds_cerveja_abrev}}</div>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-3>
+            <img [src]='cerveja.im_cerveja' />
+          </ion-col>
+
+          <ion-col col-2>
+            <img [src]='cerveja.im_pais' />
+          </ion-col>
+          <ion-col col-5>
+            <ion-row>
+              {{cerveja.ds_pais}}
+            </ion-row>
+            <ion-row>
+              {{cerveja.ds_estilo_abrev}}
+            </ion-row>
+            <ion-row>
+              R${{cerveja.vl_preco_cerveja_sug}}
+            </ion-row>
+          </ion-col>
+
+          <ion-col col-2>
+            <ion-buttons>
+              <button (click)="goToComentariosPage(cerveja)" ion-button icon-only clear>
+                <ion-icon name="chatbubbles"></ion-icon>
+              </button>
+            </ion-buttons>
+            <ion-buttons>
+              <button (click)="jaProvei(cerveja.id_cerveja)" ion-button icon-only clear>
+                <ion-icon name="checkmark-circle-outline"></ion-icon>
+              </button>
+            </ion-buttons>
+            <ion-buttons>
+              <button (click)="setLikeBeer(cerveja.id_cerveja)" ion-button icon-only clear>
+                <ion-icon name="heart-outline"></ion-icon>
+              </button>
+            </ion-buttons>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+            <button (click)="goToEstabelecimentos(cerveja.id_cerveja)"ion-button icon-left >
+                <ion-icon name="navigate"></ion-icon>
+                Veja onde encontrar
+            </button>    
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </ion-list>
+  <ng-template #notLoggedIn>
+    <ion-list>
+      <ion-card *ngFor="let cerveja of lista_cervejas">
+        <div class="card-title">{{cerveja.ds_cerveja_abrev}}</div>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-3>
+              <img [src]='cerveja.im_cerveja' />
+            </ion-col>
+
+            <ion-col col-2>
+              <img [src]='cerveja.im_pais' />
+            </ion-col>
+            <ion-col col-5>
+              <ion-row>
+                {{cerveja.ds_pais}}
+              </ion-row>
+              <ion-row>
+                {{cerveja.ds_estilo_abrev}}
+              </ion-row>
+              <ion-row>
+                R${{cerveja.vl_preco_cerveja_sug}}
+              </ion-row>
+            </ion-col>
+
+            <ion-col col-2>
+              <ion-buttons>
+                <button (click)="goToComentariosPage(cerveja)" ion-button icon-only clear>
+                  <ion-icon name="chatbubbles"></ion-icon>
+                </button>
+              </ion-buttons>
+              <ion-buttons>
+                <button (click)="jaProvei(cerveja.id_cerveja)" ion-button icon-only clear>
+                  <ion-icon name="checkmark-circle-outline"></ion-icon>
+                </button>
+              </ion-buttons>
+              <ion-buttons>
+                <button (click)="setLikeBeer(cerveja.id_cerveja)" ion-button icon-only clear>
+                  <ion-icon name="heart-outline"></ion-icon>
+                </button>
+              </ion-buttons>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+              <button (click)="goToEstabelecimentos(cerveja.id_cerveja)"ion-button icon-left >
+                  <ion-icon name="navigate"></ion-icon>
+                  Veja onde encontrar
+              </button>    
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+    </ion-list>
+  </ng-template>
+</ion-content>

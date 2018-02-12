@@ -51,6 +51,9 @@ export class MapPage {
   calculateAndDisplayRoute() {
       var estabelecimento_position = new google.maps.LatLng(this.estabelecimento['vl_latitude'], this.estabelecimento['vl_longitude']);
       var mypos = new google.maps.LatLng(this.currentPos['coords']['latitude'], this.currentPos['coords']['longitude']);
+      console.log('vj:',this.estabelecimento['vl_latitude'], this.estabelecimento['vl_longitude']);
+      console.log('eu:',this.currentPos['coords']['latitude'], this.currentPos['coords']['longitude']);
+
       this.directionsService.route({
         origin: mypos,
         destination: estabelecimento_position,

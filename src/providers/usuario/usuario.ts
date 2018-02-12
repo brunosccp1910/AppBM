@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { Http, Headers, RequestOptions } from '@angular/http';
 
+
 @Injectable()
 export class UsuarioProvider {
   myTempArray: (map: any) => any;
@@ -17,41 +18,32 @@ export class UsuarioProvider {
       nome: dataUser.username,
       email: dataUser.email ,
       imagem: dataUser.picture,
-      id : this.idUser
+      id : this.idUser,
+     
       };
      this.storage.set(key,user);
   }
 
-  getUserIdHttp() {
-    this.storage.get('cliente').then((val) => {
-      this.getUserId(val.id).subscribe(
-        data => {
-          const response = (data as any);
-          const objeto_retorno = JSON.parse(response._body);
-          console.log(objeto_retorno);
-          this.idUser = objeto_retorno['id_app_usuario'];
-        }, error => {
-          console.log(error);
-        }
-      )
-    });
+  setUserHash(key:string, hash: any){
+    hash = JSON.parse(JSON.stringify(hash));
+    console.log("Estou setando storage",hash);
+     this.storage.set(key,hash);
   }
 
   getUsuario(){
-    return Promise.resolve(this.storage.get('cliente').then((val) => {
+    return Promise.resolve(this.storage.get('hash').then((val) => {
       console.log("getusuario",val);
-      
     }));
   }
-  getUserInfo(id) {
-    return this.http.get(this.urlBase + "cliente/"+id);
+  getUserInfo(hash) {
+    return this.http.get(this.urlBase + "cliente/"+hash);
   }
   getUserId(dsusuario) {
     return this.http.get(this.urlBase + "userid/"+dsusuario);
   }
   salvarUsuario(user: any) {
 
-      this.setUserInfo('cliente',user);
+      this.setUserInfo('hash',user);
       console.log("Passou daqui");
       let myHeaders = new Headers({
           'Accept': 'application/json, text/plain, */*',

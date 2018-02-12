@@ -9,8 +9,6 @@ export class CervejasProvider {
   data: any = {};
 
   constructor(public http: Http) {
-
-    console.log('Hello CervejasProvider Provider');
     this.data.response = '';
   }
 
@@ -20,96 +18,95 @@ export class CervejasProvider {
   getEstabelecimentos() {
     return this.http.get(this.urlBase + "estabelecimento");
   }
+  getEstabelecimentosById(idCerveja) {
+    return this.http.get(this.urlBase + "estabelecimento/" + idCerveja);
+  }
   getCervejasCliente(id) {
-    return this.http.get(this.urlBase + "cervejas/cliente/"+id);
+    return this.http.get(this.urlBase + "cervejas/cliente/" + id);
   }
-  getNumLikesComentario(id){
-    return this.http.get(this.urlBase + "comentario/get/numlikescomentario/"+id);
+  getNumLikesComentario(id) {
+    return this.http.get(this.urlBase + "comentario/get/numlikescomentario/" + id);
   }
-  addNumLikesComentario(id){
-    return this.http.get(this.urlBase + "comentario/add/numlikescomentario/"+id);
-  }
-  setLsikeBeer(ids){
-    console.log(this.urlBase + "cerveja/setlike/"+ids['idcerveja']+"/"+ids['iduser']);
-    return this.http.get(this.urlBase + "cerveja/setlike/"+ids['idcerveja']+"/"+ids['iduser']);
+  addNumLikesComentario(id) {
+    return this.http.get(this.urlBase + "comentario/add/numlikescomentario/" + id);
   }
   getComentario(id) {
-    return this.http.get(this.urlBase + "getcomentario/"+id);
+    return this.http.get(this.urlBase + "getcomentario/" + id);
   }
-  setComentario(comentario : any){
+  setComentario(comentario: any) {
     let myHeaders = new Headers({
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/json'
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
     });
     let options = new RequestOptions({
-        headers: myHeaders
+      headers: myHeaders
     });
     comentario = JSON.stringify(comentario);
 
-      return new Promise((resolve, reject) => {
-        let url = this.urlBase + "setcomentario";
-        this.http.post(url, comentario,options)
-          .subscribe((result: any) => {
-            console.log(result);
-          },
-          (error) => {
-            console.log(error);
-          });
-      });
-    }
-    setLikeBeer(ids : any){
-      let myHeaders = new Headers({
-          'Accept': 'application/json, text/plain, */*',
-          'Content-Type': 'application/json'
-      });
-      let options = new RequestOptions({
-          headers: myHeaders
-      });
-      ids = JSON.stringify(ids);
-  
-        return new Promise((resolve, reject) => {
-          let url = this.urlBase + "setlikebeer";
-          this.http.post(url, ids,options)
-            .subscribe((result: any) => {
-              console.log(result);
-            },
-            (error) => {
-              console.log(error);
-            });
+    return new Promise((resolve, reject) => {
+      let url = this.urlBase + "setcomentario";
+      this.http.post(url, comentario, options)
+        .subscribe((result: any) => {
+          console.log(result);
+        },
+        (error) => {
+          console.log(error);
         });
-      }
+    });
+  }
+  setLikeBeer(ids: any) {
+    let myHeaders = new Headers({
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
+    });
+    let options = new RequestOptions({
+      headers: myHeaders
+    });
+    ids = JSON.stringify(ids);
 
-      jaProvei(ids : any){
-        let myHeaders = new Headers({
-            'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/json'
+    return new Promise((resolve, reject) => {
+      let url = this.urlBase + "setlikebeer";
+      this.http.post(url, ids, options)
+        .subscribe((result: any) => {
+          console.log(result);
+        },
+        (error) => {
+          console.log(error);
         });
-        let options = new RequestOptions({
-            headers: myHeaders
+    });
+  }
+
+  jaProvei(ids: any) {
+    let myHeaders = new Headers({
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
+    });
+    let options = new RequestOptions({
+      headers: myHeaders
+    });
+    ids = JSON.stringify(ids);
+
+    return new Promise((resolve, reject) => {
+      let url = this.urlBase + "japrovei";
+      this.http.post(url, ids, options)
+        .subscribe((result: any) => {
+          console.log(result);
+        },
+        (error) => {
+          console.log(error);
         });
-        ids = JSON.stringify(ids);
-    
-          return new Promise((resolve, reject) => {
-            let url = this.urlBase + "japrovei";
-            this.http.post(url, ids,options)
-              .subscribe((result: any) => {
-                console.log(result);
-              },
-              (error) => {
-                console.log(error);
-              });
-          });
-        }
+    });
+  }
 }
 
-  
-      
 
 
 
 
 
-  
+
+
+
 
 
 
