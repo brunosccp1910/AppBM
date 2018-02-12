@@ -45,13 +45,12 @@ export class ComentariosPage {
 
   addComentario() {
     this.comment = {iduser: this.userdata['id'],idcerveja:this.idcerveja,texto:this.comment['text']}
-    console.log(this.comment)
     this.cervejaProvider.setComentario(this.comment);
     this.comment['text'] = '';
-
+    this.atualizarComentariosTela();
+    
   }
-
-  doRefresh(refresher) {
+  atualizarComentariosTela(){//modificado
     this.cervejaProvider.getComentario(this.idcerveja).subscribe(
       data => {
         const response = (data as any);
@@ -66,6 +65,9 @@ export class ComentariosPage {
       this.userdata = val;
       console.log(this.userdata);
     });
+  }
+  doRefresh(refresher) {
+    this.atualizarComentariosTela(); //modificado
     setTimeout(() => {
       refresher.complete();
     }, 2000);
@@ -75,10 +77,9 @@ export class ComentariosPage {
   }
 
   addLike(id){
-
     this.cervejaProvider.addNumLikesComentario(id).subscribe(
       data => {
-        //console.log(data);
+        this.atualizarComentariosTela(); //modificado
       }, error => {
         console.log(error);
       }
