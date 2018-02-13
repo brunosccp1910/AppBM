@@ -32,5 +32,6 @@ export class HomePage {
   goToFeed(){
     this.navCtrl.push(FeedPage, {
       page: 'home'
-    });  }
+    });  
+  }
 }

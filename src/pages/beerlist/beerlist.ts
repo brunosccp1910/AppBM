@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angu
 import { ComentariosPage } from '../comentarios/comentarios';
 import { CervejasProvider } from '../../providers/cervejas/cervejas';
 import { FeedPage } from '../feed/feed';
+import { Storage } from '@ionic/storage/dist/storage';
+
 
 
 
@@ -26,12 +28,15 @@ export class BeerlistPage {
      public navParams: NavParams,
      public cervejasProvider: CervejasProvider,
      public modalCtrl: ModalController,
-
+     private storage:Storage
   ) {
   }
 
   ionViewDidLoad() {
-
+    this.storage.get('hash').then((val) => {
+      this.userdata = val;
+      console.log(this.userdata);
+    });  
     this.cervejasProvider.getCervejasCliente(5).subscribe(
       data => {
         const response = (data as any);
@@ -90,11 +95,11 @@ export class BeerlistPage {
   }
 
   jaProvei(idCerveja) {
-    var like = {iduser: this.userdata['hash'],idcerveja:idCerveja}
+    var like = {hash: this.userdata['hash'],idcerveja:idCerveja}
     this.cervejasProvider.jaProvei(like);
   }
   setLikeBeer(idCerveja) {
-    var like = {iduser: this.userdata['hash'],idcerveja:idCerveja}
+    var like = {hash: this.userdata['hash'],idcerveja:idCerveja}
     this.cervejasProvider.setLikeBeer(like);
   }
 

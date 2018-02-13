@@ -44,7 +44,7 @@ export class ComentariosPage {
   }
 
   addComentario() {
-    this.comment = {iduser: this.userdata['id'],idcerveja:this.idcerveja,texto:this.comment['text']}
+    this.comment = {hash: this.userdata['hash'],idcerveja:this.idcerveja,texto:this.comment['text']}
     this.cervejaProvider.setComentario(this.comment);
     this.comment['text'] = '';
     this.atualizarComentariosTela();

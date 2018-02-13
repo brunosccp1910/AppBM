@@ -11,24 +11,18 @@ export class UsuarioProvider {
   constructor(private storage: Storage, public http: Http) {
   }
 
-  setUserInfo(key:string, dataUser: any){
+  setUserInfo(key:string, dataUser: any,hash: any){
     dataUser = JSON.parse(JSON.stringify(dataUser));
     console.log("Estou setando storage",dataUser);
     var user={
+      hash:hash,
       nome: dataUser.username,
       email: dataUser.email ,
-      imagem: dataUser.picture,
-      id : this.idUser,
-     
+      imagem: dataUser.picture     
       };
      this.storage.set(key,user);
   }
 
-  setUserHash(key:string, hash: any){
-    hash = JSON.parse(JSON.stringify(hash));
-    console.log("Estou setando storage",hash);
-     this.storage.set(key,hash);
-  }
 
   getUsuario(){
     return Promise.resolve(this.storage.get('hash').then((val) => {
@@ -42,8 +36,7 @@ export class UsuarioProvider {
     return this.http.get(this.urlBase + "userid/"+dsusuario);
   }
   salvarUsuario(user: any) {
-
-      this.setUserInfo('hash',user);
+      var userhashinfo = user;
       console.log("Passou daqui");
       let myHeaders = new Headers({
           'Accept': 'application/json, text/plain, */*',
@@ -57,7 +50,10 @@ export class UsuarioProvider {
           let url = this.urlBase + "salvaruser";
           this.http.post(url, user,options)
             .subscribe((result: any) => {
-              console.log(result);
+              const response = (result as any);
+              const objeto_retorno = JSON.parse(response._body);
+              console.log(objeto_retorno[0]['token']);
+              this.setUserInfo('hash',userhashinfo,objeto_retorno[0]['token']);
             },
             (error) => {
               console.log(error);

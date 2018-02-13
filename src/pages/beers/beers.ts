@@ -31,14 +31,12 @@ export class BeersPage {
     private storage:Storage
   ) {
     this.estabelecimento = this.navParams.get('estabelecimento');
-    console.log(this.estabelecimento);
   }
 
   
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BeersPage',this.estabelecimento);
-    this.storage.get('cliente').then((val) => {
+    this.storage.get('hash').then((val) => {
       this.userdata = val;
       console.log(this.userdata);
     });  
@@ -100,11 +98,11 @@ export class BeersPage {
   }
 
   jaProvei(idCerveja) {
-    var like = {iduser: this.userdata['hash'],idcerveja:idCerveja}
+    var like = {hash: this.userdata['hash'],idcerveja:idCerveja}
     this.cervejasProvider.jaProvei(like);
   }
   setLikeBeer(idCerveja) {
-    var like = {iduser: this.userdata['hash'],idcerveja:idCerveja}
+    var like = {hash: this.userdata['hash'],idcerveja:idCerveja}
     this.cervejasProvider.setLikeBeer(like);
   }
 

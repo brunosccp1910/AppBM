@@ -21,7 +21,7 @@ export class UserPage {
 
 
   ionViewDidLoad() {
-    this.storage.get('cliente').then((val) => {
+    this.storage.get('hash').then((val) => {
       this.usuarioProvider.getUserInfo(val.id).subscribe(
         data => {
           const response = (data as any);
