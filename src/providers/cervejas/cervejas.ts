@@ -24,15 +24,10 @@ export class CervejasProvider {
   getCervejasCliente(id) {
     return this.http.get(this.urlBase + "cervejas/cliente/" + id);
   }
-  getNumLikesComentario(id) {
-    return this.http.get(this.urlBase + "comentario/get/numlikescomentario/" + id);
-  }
-  addNumLikesComentario(id) {
-    return this.http.get(this.urlBase + "comentario/add/numlikescomentario/" + id);
-  }
   getComentario(id) {
     return this.http.get(this.urlBase + "getcomentario/" + id);
   }
+
   setComentario(comentario: any) {
     let myHeaders = new Headers({
       'Accept': 'application/json, text/plain, */*',
@@ -54,6 +49,7 @@ export class CervejasProvider {
         });
     });
   }
+
   setLikeBeer(ids: any) {
     let myHeaders = new Headers({
       'Accept': 'application/json, text/plain, */*',
@@ -66,6 +62,28 @@ export class CervejasProvider {
 
     return new Promise((resolve, reject) => {
       let url = this.urlBase + "setlikebeer";
+      this.http.post(url, ids, options)
+        .subscribe((result: any) => {
+          console.log(result);
+        },
+        (error) => {
+          console.log(error);
+        });
+    });
+  }
+
+  setLikeComment(ids: any) {
+    let myHeaders = new Headers({
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
+    });
+    let options = new RequestOptions({
+      headers: myHeaders
+    });
+    ids = JSON.stringify(ids);
+
+    return new Promise((resolve, reject) => {
+      let url = this.urlBase + "setlikecomment";
       this.http.post(url, ids, options)
         .subscribe((result: any) => {
           console.log(result);

@@ -28,6 +28,8 @@ import { Geolocation } from '@ionic-native/geolocation'
 import { Device } from '@ionic-native/device';
 import { BeerlistPage } from '../pages/beerlist/beerlist';
 import { BeerlistPageModule } from '../pages/beerlist/beerlist.module';
+import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
+
 
 @NgModule({
   declarations: [
@@ -67,6 +69,7 @@ import { BeerlistPageModule } from '../pages/beerlist/beerlist.module';
     SplashScreen,
     UsuarioProvider,
     Geolocation,
+    LaunchNavigator,
     Facebook,
     Device,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

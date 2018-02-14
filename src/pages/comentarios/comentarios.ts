@@ -68,27 +68,10 @@ export class ComentariosPage {
   }
   
   addLike(idComentario){
-    this.cervejaProvider.addNumLikesComentario(idComentario).subscribe(
-      data => {
-        this.atualizarComentariosTela(); //modificado
-      }, error => {
-        console.log(error);
-      }
-    )
+    var like = {hash: this.userdata['hash'],idComentario:idComentario}
+    this.cervejaProvider.setLikeComment(like);
   }
 
-  getLike(idComentario){
-
-    this.cervejaProvider.getNumLikesComentario(idComentario).subscribe(
-      data => {
-        const response = (data as any);
-        const objeto_retorno = JSON.parse(response._body);
-        this.qtd_likes = objeto_retorno;
-        console.log(this.qtd_likes);
-      }, error => {
-        console.log(error);
-      }
-    )
-  }
+ 
 
 }

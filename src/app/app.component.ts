@@ -19,8 +19,21 @@ export class MyApp {
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private storage:Storage
   ) {
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need
+
+     /* var user={
+        device:"Android SDK built for x86",
+        email:"bruno_eduhardy@hotmail.com",
+        first_name:"Bruno",
+        id:"1782824875081997",
+        picture:"https://scontent.xx.fbcdn.net/v/t1.0-1/18198202_1522857201078767_4982598060035143686_n.jpg?oh=9876e42d0115dbe665db4ba2b1574f3e&oe=5ADAC140",
+        plataforma:"Android",
+        username:"Bruno Eduardo",
+        uuid:"4c2cfa306025fe77",
+        hash:"QaLpqYCFwdZ7vyRWGS1Y"
+        };
+       this.storage.set('hash',user);
+       */
+
       this.storage.get('hash').then((val) => {
         if(val){
           this.cadastrado = true
@@ -35,4 +48,7 @@ export class MyApp {
       splashScreen.hide();
     });
   }
+
+ 
+  
 }

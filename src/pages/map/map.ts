@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BeersPage } from '../beers/beers';
 import {Platform} from "ionic-angular";
 import { Geolocation ,GeolocationOptions ,Geoposition ,PositionError } from '@ionic-native/geolocation'; 
+import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
 
 declare var google;
 
@@ -23,19 +24,42 @@ export class MapPage {
 
   options : GeolocationOptions;
   currentPos : Geoposition;
+
+  destination:string;
+  start:string;
  
   constructor(
     private navCtrl: NavController,
     private platform: Platform,
     public navParams: NavParams,
-    private geolocation : Geolocation
+    private geolocation : Geolocation,
+    private launchnavigator: LaunchNavigator
   ) {
     this.estabelecimento = this.navParams.get('estabelecimento');
 
+    this.start = "";
+    this.destination = ""+this.estabelecimento['vl_latitude']+","+this.estabelecimento['vl_longitude']+"";
+   
+
+  }
+
+  navigate(){
+    let options: LaunchNavigatorOptions = {
+      start: this.start,
+      app: this.launchnavigator.APP.GOOGLE_MAPS
+
+    };
+
+    this.launchnavigator.navigate(this.destination, options)
+        .then(
+            success => alert('Launched navigator'),
+            error => alert('Error launching navigator: ' + error)
+    );
   }
 
   ionViewDidLoad(){
-    this.getUserPosition();  
+    this.getUserPosition(); 
+    this.navigate(); 
   }
   initMap(lat,long ) {
     this.map = new google.maps.Map(this.mapElement.nativeElement, {

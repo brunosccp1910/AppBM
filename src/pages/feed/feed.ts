@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BeersPage } from '../beers/beers';
 import { MapPage } from '../map/map';
 import { CervejasProvider } from '../../providers/cervejas/cervejas';
+import { Geolocation ,GeolocationOptions ,Geoposition ,PositionError } from '@ionic-native/geolocation'; 
+
 
 @IonicPage()
 @Component({
@@ -16,24 +18,29 @@ export class FeedPage {
 
   public lista_estabelecimentos = new Array<any>();
   public prevPage: string;
+  currentPos : Geoposition;
+  options : GeolocationOptions;
+
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public cervejasProvider: CervejasProvider,
+    private geolocation : Geolocation
   ) {
+
   }
   ionViewDidLoad() {
     this.prevPage = this.navParams.get('page');
-    console.log("daqui até lá",this.calculateDistance(-2.5558528,-2.49395060,-44.248103099999994,-44.27560080));
+
     if (this.prevPage == 'home') {
       this.cervejasProvider.getEstabelecimentos().subscribe(
         data => {
           const response = (data as any);
           const objeto_retorno = JSON.parse(response._body);
           this.lista_estabelecimentos = objeto_retorno;
-          console.log("Buscou clientes");
-          console.log(data);
+          this.getUserPosition(this.lista_estabelecimentos);
+          console.log(this.lista_estabelecimentos);
         }, error => {
           console.log(error);
         }
@@ -73,4 +80,22 @@ export class FeedPage {
     return dis;
   }
 
+  
+
+  getUserPosition(lista_estabelecimentos){
+    this.options = {
+    enableHighAccuracy : false
+    };
+    this.geolocation.getCurrentPosition(this.options).then((pos : Geoposition) => {
+        this.currentPos = pos;
+        for (let estab of lista_estabelecimentos) {
+          estab['distance'] = this.calculateDistance(this.currentPos['coords']['latitude'],estab['vl_latitude'],this.currentPos['coords']['longitude'],estab['vl_longitude']).toFixed(2);
+        }
+        var ascending = lista_estabelecimentos.sort((a, b) => Number(a.distance) - Number(b.distance));
+        this.lista_estabelecimentos = ascending;
+    },(err : PositionError)=>{
+        console.log("error : " + err.message);
+    ;
+    })
+  }
 }
