@@ -69,7 +69,7 @@ export class BeersPage {
         const response = (data as any);
         const objeto_retorno = JSON.parse(response._body);
         this.lista_cervejas = objeto_retorno;
-        console.log(data);
+        console.log('cervejas',data);
       }, error => {
         console.log(error);
       }
