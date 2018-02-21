@@ -22,7 +22,7 @@ export class UserPage {
 
   ionViewDidLoad() {
     this.storage.get('hash').then((val) => {
-      this.usuarioProvider.getUserInfo(val.id).subscribe(
+      this.usuarioProvider.getUserInfo(val.hash).subscribe(
         data => {
           const response = (data as any);
           const objeto_retorno = JSON.parse(response._body);

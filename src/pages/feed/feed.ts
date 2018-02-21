@@ -4,6 +4,7 @@ import { BeersPage } from '../beers/beers';
 import { MapPage } from '../map/map';
 import { CervejasProvider } from '../../providers/cervejas/cervejas';
 import { Geolocation ,GeolocationOptions ,Geoposition ,PositionError } from '@ionic-native/geolocation'; 
+import { map } from 'rxjs/operator/map';
 
 
 @IonicPage()
@@ -20,6 +21,8 @@ export class FeedPage {
   public prevPage: string;
   currentPos : Geoposition;
   options : GeolocationOptions;
+  public flag:boolean = false;
+
 
 
   constructor(
@@ -50,9 +53,13 @@ export class FeedPage {
         data => {
           const response = (data as any);
           const objeto_retorno = JSON.parse(response._body);
-          this.lista_estabelecimentos = objeto_retorno;
-          console.log("Buscou clientes");
-          console.log(data);
+
+ 
+          this.lista_estabelecimentos = Array.of(objeto_retorno);
+      
+         
+          this.getUserPosition(this.lista_estabelecimentos);
+          console.log('ToArray',this.lista_estabelecimentos);
         }, error => {
           console.log(error);
         }
@@ -80,7 +87,9 @@ export class FeedPage {
     return dis;
   }
 
-  
+  objToArray(obj){
+
+  }
 
   getUserPosition(lista_estabelecimentos){
     this.options = {
@@ -91,8 +100,10 @@ export class FeedPage {
         for (let estab of lista_estabelecimentos) {
           estab['distance'] = this.calculateDistance(this.currentPos['coords']['latitude'],estab['vl_latitude'],this.currentPos['coords']['longitude'],estab['vl_longitude']).toFixed(2);
         }
-        var ascending = lista_estabelecimentos.sort((a, b) => Number(a.distance) - Number(b.distance));
-        this.lista_estabelecimentos = ascending;
+          var ascending = lista_estabelecimentos.sort((a, b) => Number(a.distance) - Number(b.distance));
+          this.lista_estabelecimentos = ascending;
+        
+
     },(err : PositionError)=>{
         console.log("error : " + err.message);
     ;

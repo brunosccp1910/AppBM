@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
-
+import {Events} from 'ionic-angular';
 import 'rxjs/add/operator/map'
 
 @Injectable()
@@ -8,7 +8,7 @@ export class CervejasProvider {
   private urlBase = "http://app.beercomigo.com/";
   data: any = {};
 
-  constructor(public http: Http) {
+  constructor(public http: Http,public events: Events) {
     this.data.response = '';
   }
 
@@ -24,8 +24,8 @@ export class CervejasProvider {
   getCervejasCliente(id) {
     return this.http.get(this.urlBase + "cervejas/cliente/" + id);
   }
-  getComentario(id) {
-    return this.http.get(this.urlBase + "getcomentario/" + id);
+  getComentario(id,hash) {
+    return this.http.get(this.urlBase + "getcomentario/" + id+"/"+hash);
   }
 
   setComentario(comentario: any) {
@@ -43,6 +43,29 @@ export class CervejasProvider {
       this.http.post(url, comentario, options)
         .subscribe((result: any) => {
           console.log(result);
+          this.events.publish('comentario:resposta', result);
+        },
+        (error) => {
+          console.log(error);
+        });
+    });
+  }
+  setAvaliacao(avaliacao: any) {
+    let myHeaders = new Headers({
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
+    });
+    let options = new RequestOptions({
+      headers: myHeaders
+    });
+    avaliacao = JSON.stringify(avaliacao);
+
+    return new Promise((resolve, reject) => {
+      let url = this.urlBase + "setavaliacao";
+      this.http.post(url, avaliacao, options)
+        .subscribe((result: any) => {
+          console.log(result);
+          this.events.publish('avaliacao:resposta', result);
         },
         (error) => {
           console.log(error);

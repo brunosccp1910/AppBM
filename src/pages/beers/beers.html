@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>beers</ion-title>
+    <ion-title>{{estabelecimento.ds_nome_fantasia}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -18,13 +18,12 @@
     <ion-item>
       <ion-icon name="beer" item-start large></ion-icon>
       <h2>{{estabelecimento.ds_nome_fantasia}}</h2>
-      <p>Descrição do estabelecimento aqui</p>
+      <p>{{estabelecimento.ds_cliente}}</p>
     </ion-item>
 
 
     <ion-item>
-      <span item-left>18 min</span>
-      <span item-left>(2.6 mi)</span>
+      <span item-left>{{estabelecimento.distance}}Km</span>
 
     </ion-item>
 

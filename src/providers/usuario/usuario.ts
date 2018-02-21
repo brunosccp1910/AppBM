@@ -32,6 +32,9 @@ export class UsuarioProvider {
   getUserInfo(hash) {
     return this.http.get(this.urlBase + "cliente/"+hash);
   }
+  getCervejasProvadas(hash) {
+    return this.http.get(this.urlBase + "usuario/provou/"+hash);
+  }
   getUserId(dsusuario) {
     return this.http.get(this.urlBase + "userid/"+dsusuario);
   }

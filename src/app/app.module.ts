@@ -30,6 +30,9 @@ import { BeerlistPage } from '../pages/beerlist/beerlist';
 import { BeerlistPageModule } from '../pages/beerlist/beerlist.module';
 import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
 
+import { ComentarioAvaliacaoPage } from '../pages/comentario-avaliacao/comentario-avaliacao';
+
+
 
 @NgModule({
   declarations: [
@@ -39,7 +42,9 @@ import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-na
     BeersPage,
     BeerlistPage,
     ComentariosPage,
-    MapPage
+    MapPage,
+    ComentarioAvaliacaoPage
+
   ],
   imports: [
     BrowserModule,
@@ -62,7 +67,9 @@ import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-na
     BeersPage,
     BeerlistPage,
     ComentariosPage,
-    MapPage
+    MapPage,
+    ComentarioAvaliacaoPage
+
   ],
   providers: [
     StatusBar,

@@ -17,7 +17,9 @@
         <h1>{{userdata.ds_nome}}</h1>
        </div>
        <div class="profile-body">
-        <p>Você já experimentou 110 cervejas</p>
+        <p>Você já experimentou {{userdata.qtd_cerveja_provada}} cervejas</p>
+        <p>Você já avaliou {{userdata.qtd_cerveja_avaliada}} cervejas</p>
+        <p>Você já curtiu {{userdata.qtd_cerveja_curtida}} cervejas</p>
         <p>{{userdata.ds_email}}</p>
         <div class="subscribe-btn">
          <a href="#" class="btn-primary">Suas avaliações</a>

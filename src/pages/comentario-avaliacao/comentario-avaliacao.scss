@@ -1,10 +1,4 @@
-page-comentarios {
-    #myInput {
-        width: calc(100% - 10px);
-        border: 0;
-        border-radius: 0;
-        background: yellow;
-    }
+comentario-avaliacao {
     ul {
         padding: 0px;
       
@@ -28,13 +22,13 @@ page-comentarios {
         padding: 5px;
       }
       .titulo{
-          padding: 5px;
-          background: black;
-          color: white;          
-      }
-      .titulo h2{
-        text-align: center;
-        color: white;
-        width: 100%;
+        padding: 5px;
+        background: black;
+        color: white;          
     }
+    .titulo h2{
+      text-align: center;
+      color: white;
+      width: 100%;
+  }
 }

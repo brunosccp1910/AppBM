@@ -1,0 +1,39 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Fechar</button>
+    </ion-buttons>
+    <ion-title>Avaliação e Comentário</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row align-items-center>
+      <h2>{{avaliacao.titulo}}</h2>
+    </ion-row>
+    <ion-row align-items-center>
+      <rating [(ngModel)]="rate" readOnly="{{avaliacao.desabilitaAvaliacao}}" max="5" value="3.4" emptyStarIconName="star-outline" halfStarIconName="star-half"
+        starIconName="star" nullable="false" (ngModelChange)="onAvalicaoAlterado($event)"></rating>
+    </ion-row>
+    <ion-row align-items-center>
+      <button ion-button color="danger" full [disabled]="!avaliacao.habilitaBotao" (click)="enviarAvaliacao()">{{textoBotaoAvaliacao}}</button>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row align-items-center>
+      <h2>Comentário</h2>
+    </ion-row>
+    <ion-row align-items-center>
+      <ion-item>
+        <ion-textarea [(ngModel)]="comentario.valor" name="text" placeholder="Comente aqui" clearOnEdit rows="5" (ionChange)="digitando()" ></ion-textarea>        
+      </ion-item>
+    </ion-row>
+    <ion-row align-items-center>
+        <button ion-button color="danger" full [disabled]="!comentario.habilitaBotao" (click)="enviarComentario()">{{textoBotaoComentario}}</button>
+      </ion-row>
+  </ion-grid>
+</ion-content>

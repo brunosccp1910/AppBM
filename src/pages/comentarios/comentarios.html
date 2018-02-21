@@ -8,47 +8,59 @@
 
 <ion-header>
   <ion-item>
-      <ion-avatar item-start>
-          <img src={{cerveja.im_cerveja}} >
-      </ion-avatar>
-        <h2>Comente sobre a {{cerveja.ds_cerveja_abrev}}</h2>
-  </ion-item>  
-  
-    
-    <form (ngSubmit)="addComentario()">
-        <ion-item>
-          {{userdata.nome}}
-        </ion-item>
-        <ion-item>
-          <ion-textarea [(ngModel)]="comment.text" name="text" placeholder="Comente aqui" clearOnEdit ></ion-textarea>
-        </ion-item>
-        <button ion-button type="submit" block>Adicionar comentário</button>
-      </form>
+    <ion-grid>
+      <ion-row class="titulo">
+        <h2>{{cerveja.ds_cerveja_abrev}}</h2>
+      </ion-row>
+      <ion-row>
+        <ion-col col-2>
+          <img src="{{cerveja.im_cerveja}}" />
+        </ion-col>
+        <ion-col>
+          <ion-row>
+            <img src="{{cerveja.im_pais}}" style="width: auto; height: 20px;" />
+          </ion-row>
+          <ion-row>
+            {{cerveja.ds_estilo_abrev}}
+          </ion-row>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <button ion-button full (click)="addComentario()">Comentar e Avaliar</button>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+  <!-- 
+  <form (ngSubmit)="addComentario()">
+    <ion-item>
+     {{userdata.nome}}
+   </ion-item>
+    <ion-item>
+      <ion-textarea [(ngModel)]="comment.text" name="text" placeholder="Comente aqui" clearOnEdit></ion-textarea>
+    </ion-item>
+    <button ion-button type="submit" block>Adicionar comentário</button>
+  </form>-->
 </ion-header>
+<ion-content>
+  <ion-card *ngFor="let comentario of comentarios">
+    <ion-card>
+      <ion-item>
+        <ion-avatar item-start>
+          <img src={{comentario.im_app_usuario}}>
+        </ion-avatar>
+        <h2>{{comentario.ds_nome}}</h2>
+      </ion-item>
 
+      <ion-card-content>
+        <p>{{comentario.ds_comentario}}</p>
+        <button ion-button icon-only ion-button color="primary" clear small icon-start (click)="addLike(comentario.id_app_comentario)"
+          ng-disabled="expression" >
+          <ion-icon name="thumbs-up"></ion-icon>
+        </button>
+        {{comentario.cd_qtd_likes}} pessoas curtiram isso
+      </ion-card-content>
 
-<ion-content padding>
-  
-  <ion-card  *ngFor="let comentario of comentarios"  >
-      <ion-card>
-          <ion-item>
-            <ion-avatar item-start>
-                <img src={{comentario.im_app_usuario}} >
-              </ion-avatar>
-            <h2>{{comentario.ds_nome}}</h2>
-          </ion-item>
-                
-          <ion-card-content>
-            <p>{{comentario.ds_comentario}}</p>
-            <button ion-button icon-only ion-button color="primary" clear small icon-start (click)="addLike(comentario.id_app_comentario)" ng-disabled="expression">
-              <ion-icon name="thumbs-up"></ion-icon>
-            </button>
-            {{comentario.cd_qtd_likes}} pessoas curtiram isso
-          </ion-card-content>
-        
-       
-        
-        </ion-card>
+    </ion-card>
   </ion-card>
-  
+
 </ion-content>
