@@ -35,6 +35,9 @@ export class UsuarioProvider {
   getCervejasProvadas(hash) {
     return this.http.get(this.urlBase + "usuario/provou/"+hash);
   }
+  getCervejasComentadas(hash) {
+    return this.http.get(this.urlBase + "usuario/comentou/"+hash);
+  }
   getUserId(dsusuario) {
     return this.http.get(this.urlBase + "userid/"+dsusuario);
   }

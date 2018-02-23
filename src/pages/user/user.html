@@ -1,4 +1,3 @@
-
 <ion-header>
 
   <ion-navbar>
@@ -6,27 +5,57 @@
   </ion-navbar>
 
 </ion-header>
-<ion-content  >
+<ion-content>
   <div class="container">
     <div class="row d-flex justify-content-center">
       <div class="main-profile">
-       <div class="profile-background">
-       </div>
-       <div class="profile-header">
-        <img src={{userdata.im_app_usuario}} alt="Your name">
-        <h1>{{userdata.ds_nome}}</h1>
-       </div>
-       <div class="profile-body">
-        <p>Você já experimentou {{userdata.qtd_cerveja_provada}} cervejas</p>
-        <p>Você já avaliou {{userdata.qtd_cerveja_avaliada}} cervejas</p>
-        <p>Você já curtiu {{userdata.qtd_cerveja_curtida}} cervejas</p>
-        <p>{{userdata.ds_email}}</p>
-        <div class="subscribe-btn">
-         <a href="#" class="btn-primary">Suas avaliações</a>
-         <a href="#" class="btn-primary">Cervejas experimentadas</a>
+        <div class="profile-background">
         </div>
-       </div>
+        <div class="profile-header">
+          <img src={{userdata.im_app_usuario}} alt="Your name">
+          <h1>{{userdata.ds_nome}}</h1>
+        </div>
+        <div class="profile-body">
+          <p>Você já experimentou {{userdata.qtd_cerveja_provada}} cervejas</p>
+          <p>Você já avaliou {{userdata.qtd_cerveja_avaliada}} cervejas</p>
+          <p>Você já curtiu {{userdata.qtd_cerveja_curtida}} cervejas</p>
+          <div class="subscribe-btn">
+            <a href="#" class="btn-primary" (click)="setFlagBeer()" >Suas avaliações</a>
+            <a href="#" class="btn-primary" (click)="setFlagComment()">Cervejas experimentadas</a>
+          </div>
+          {{this.flag}}
+        </div>
       </div>
     </div>
-   </div>
+  </div>
+  <ion-list *ngIf="flag; else comentario">
+    <ion-card *ngFor="let cerveja of listacervejas">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img [src]='cerveja.im_cerveja' />
+        </ion-thumbnail>
+        <h2>{{cerveja.ds_cerveja_abrev}}</h2>
+        <p>ABV: {{cerveja.vl_teor_alcoolico}}% {{cerveja.nm_ibu}} IBU's</p>
+        <button ion-button clear item-end>View</button>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+
+  <ng-template #comentario>
+    <ion-list >
+      <ion-card *ngFor="let comentario of listacomentarios">
+        <ion-item>
+          <ion-thumbnail item-start>
+            <img [src]='comentario.im_cerveja' />
+          </ion-thumbnail>
+          <h2>{{comentario.ds_cerveja_abrev}}</h2>
+          <h2>{{comentario.ds_comentario}}</h2>
+          <p>{{comentario.dt_comentario}}</p>
+          <p>6 curtidas</p>
+          <button ion-button clear item-end>View</button>
+        </ion-item>
+      </ion-card>
+    </ion-list>
+  </ng-template>
+
 </ion-content>
