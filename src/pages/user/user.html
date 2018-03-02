@@ -20,41 +20,38 @@
           <p>Você já avaliou {{userdata.qtd_cerveja_avaliada}} cervejas</p>
           <p>Você já curtiu {{userdata.qtd_cerveja_curtida}} cervejas</p>
           <div class="subscribe-btn">
-            <a href="#" class="btn-primary" (click)="setFlagBeer()" >Suas avaliações</a>
-            <a href="#" class="btn-primary" (click)="setFlagComment()">Cervejas experimentadas</a>
+            <a href="#" class="btn-primary" (click)="setFlagBeer()" >Cervejas que já provei!</a>
+            <a href="#" class="btn-primary" (click)="setFlagComment()">Meus comentários</a>
           </div>
-          {{this.flag}}
         </div>
       </div>
     </div>
   </div>
   <ion-list *ngIf="flag; else comentario">
+    <h1 class="titulo" >Cervejas que já provei!</h1>
     <ion-card *ngFor="let cerveja of listacervejas">
       <ion-item>
         <ion-thumbnail item-start>
-          <img [src]='cerveja.im_cerveja' />
+            <img [src]='cerveja.im_cerveja!=null?cerveja.im_cerveja:"http://sistema.beercomigo.com/img/icones/cerveja_sem_imagem.png"' />
         </ion-thumbnail>
         <h2>{{cerveja.ds_cerveja_abrev}}</h2>
         <p>ABV: {{cerveja.vl_teor_alcoolico}}% {{cerveja.nm_ibu}} IBU's</p>
-        <button ion-button clear item-end>View</button>
+        <button (click)="goToBeerDetail(cerveja.id_cerveja)" ion-button clear item-end>Detalhar</button>
       </ion-item>
     </ion-card>
   </ion-list>
 
   <ng-template #comentario>
-    <ion-list >
-      <ion-card *ngFor="let comentario of listacomentarios">
+    <h1 class="titulo">Meus comentários</h1>
+    <ion-list *ngFor="let comentario of listacomentarios">
         <ion-item>
-          <ion-thumbnail item-start>
+          <ion-avatar item-start>
             <img [src]='comentario.im_cerveja' />
-          </ion-thumbnail>
+          </ion-avatar >
           <h2>{{comentario.ds_cerveja_abrev}}</h2>
-          <h2>{{comentario.ds_comentario}}</h2>
-          <p>{{comentario.dt_comentario}}</p>
-          <p>6 curtidas</p>
-          <button ion-button clear item-end>View</button>
+          <h3>{{comentario.ds_comentario}}</h3>
+          <p>6 curtidas     Comentei em:  {{comentario.dt_comentario | date: 'dd/MM/yyyy'}}</p>
         </ion-item>
-      </ion-card>
     </ion-list>
   </ng-template>
 

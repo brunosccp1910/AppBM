@@ -31,6 +31,7 @@ import { BeerlistPageModule } from '../pages/beerlist/beerlist.module';
 import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
 
 import { ComentarioAvaliacaoPage } from '../pages/comentario-avaliacao/comentario-avaliacao';
+import { BeerdetailPage } from '../pages/beerdetail/beerdetail';
 
 
 
@@ -41,6 +42,7 @@ import { ComentarioAvaliacaoPage } from '../pages/comentario-avaliacao/comentari
     TabsPage,
     BeersPage,
     BeerlistPage,
+    BeerdetailPage,
     ComentariosPage,
     MapPage,
     ComentarioAvaliacaoPage
@@ -66,6 +68,7 @@ import { ComentarioAvaliacaoPage } from '../pages/comentario-avaliacao/comentari
     UserPage,
     BeersPage,
     BeerlistPage,
+    BeerdetailPage,
     ComentariosPage,
     MapPage,
     ComentarioAvaliacaoPage

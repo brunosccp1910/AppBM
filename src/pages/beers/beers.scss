@@ -17,5 +17,46 @@ ul {
       }
     }
   }
-
+  .categoria{
+    padding: 7px 0px;
+    background: black;
+    color: white;
+    text-align: center;
+  }
+  .ds_categoria{
+    padding: 0 0 5px 0;
+    background: black;
+    color: white;
+    text-align: center;
+    font-size: 12px;
+  }
+  .ds_estilo{
+    padding: 2px 0;
+    background: rgb(17, 0, 255);
+    color: white;
+    text-align: center;
+    width: 100%;
+    color:white;
+  }
+  .titulo{
+    padding: 5px;
+    background:#771100;
+    color: white;
+    text-align: center;
+    width: 100%;
+  }
+  .card{
+    padding: 0px;
+    border: 1px #777 solid;
+  }
+  .avaliacao{
+    margin-top: 0px;
+    margin-left: -3px;
+  }
+  .avaliacao ion-icon{
+    font-size: 36px;
+    padding: 0px;
+    margin: 0px;
+    color: #ffb400;
+  }
 }

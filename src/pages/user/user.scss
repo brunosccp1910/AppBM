@@ -1,12 +1,14 @@
 page-user {
     // Colors
 
-$dark: #03120e;
+$dark: #d4e4e0;
 $neutral: #EFEFEF;
 $gray: #1a1d1a;
-$yellow: #ffc956;
+$yellow: #b84d3a;
 $light-gray: rgba(255, 255, 255, 0.4);
 $white: #FFFFFF;
+$branco: #FFFFFF;
+
 
 /* This section is for
  * ------------------------------------
@@ -60,6 +62,19 @@ $headings-color: inherit !default;
 	&::after, &::before {
 		box-sizing: border-box;
 	}
+}
+
+h1.titulo{
+	 color: #b48608;
+	  font-family: 'Droid serif',
+	   serif; 
+	   font-size: $font-size-h1;
+	   font-weight: 400;
+		 font-style: italic;
+		  line-height: 44px;
+		   margin: 0 0 12px; 
+		   text-align: center; 
+
 }
 
 h1 {
@@ -165,7 +180,7 @@ body {
  * */
 
 .main-profile {
-	background: $gray;
+	background: $branco;
 	color: $body-color;
 	width: 100%;
 	border: 2px solid rgba(255, 255, 255, 0.1);
@@ -190,7 +205,7 @@ body {
 
 			li a {
 				font-size: 1.2rem;
-				color: $gray;
+				color: $branco;
 				margin: 0.5rem;
 			}
 		}

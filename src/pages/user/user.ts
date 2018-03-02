@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { Storage } from '@ionic/storage/dist/storage';
+import { BeerdetailPage } from '../beerdetail/beerdetail';
 
 
 @IonicPage()
@@ -20,7 +21,7 @@ export class UserPage {
 
 
   public id:any
-  constructor(private usuarioProvider: UsuarioProvider,private storage:Storage) {
+  constructor(public modalCtrl: ModalController, private usuarioProvider: UsuarioProvider,private storage:Storage) {
     this.getCervejasProvadas();
     this.getCervejasComentadas();
 
@@ -81,6 +82,16 @@ export class UserPage {
   }
   setFlagComment(){
     this.flag = false;//false = comentario
+  }
+
+  goToBeerDetail(idCerveja) {
+    
+    let modal = this.modalCtrl.create(BeerdetailPage, {
+      cerveja: idCerveja
+
+    });
+    modal.present();
+    modal.onDidDismiss(data => console.log(data));
   }
 
   

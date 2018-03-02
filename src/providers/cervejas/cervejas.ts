@@ -10,10 +10,13 @@ export class CervejasProvider {
 
   constructor(public http: Http,public events: Events) {
     this.data.response = '';
+  } 
+ 
+  getCervejas(ontap,pagina,pesquisa) {
+    return this.http.get(this.urlBase + "cervejas/"+ontap+"/"+pagina+"/"+pesquisa);
   }
-
-  getCervejas() {
-    return this.http.get(this.urlBase + "cervejas");
+  getCervejaById(idCerveja) {
+    return this.http.get(this.urlBase + "cervejas/"+idCerveja);
   }
   getEstabelecimentos() {
     return this.http.get(this.urlBase + "estabelecimento");
@@ -21,15 +24,15 @@ export class CervejasProvider {
   getEstabelecimentosById(idCerveja) {
     return this.http.get(this.urlBase + "estabelecimento/" + idCerveja);
   }
-  getCervejasCliente(id) {
-    return this.http.get(this.urlBase + "cervejas/cliente/" + id);
+  getCervejasCliente(id,ontap,pagina,pesquisa) {
+    return this.http.get(this.urlBase + "cervejas/cliente/" + id + "/"+ontap+"/"+pagina+"/"+pesquisa);
   }
   getComentario(id,hash) {
     return this.http.get(this.urlBase + "getcomentario/" + id+"/"+hash);
   }
 
   setComentario(comentario: any) {
-    let myHeaders = new Headers({
+    let myHeaders = new Headers({ 
       'Accept': 'application/json, text/plain, */*',
       'Content-Type': 'application/json'
     });

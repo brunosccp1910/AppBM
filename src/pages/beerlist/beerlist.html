@@ -7,160 +7,99 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>beerlist</ion-title>
+    <ion-title>Cervejas</ion-title>
   </ion-navbar>
 
 </ion-header>
-
-
 <ion-content>
-    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
-    <ion-list *ngIf="flag; else notLoggedIn">
-      <ion-card *ngFor="let cerveja of lista_cervejasAuxiliar">
-          <div class="card-title">{{cerveja.ds_cerveja_abrev}}</div>
-          <ion-grid>
-            <ion-row >
-              <ion-col col-3 >
-                <img [src]='cerveja.im_cerveja' />
-              </ion-col>
-  
-              <ion-col col-7 >
-                <ion-row >
-                <ion-row >
-                    <ion-col col-5>
-                      <img [src]='cerveja.im_pais' />
-                    </ion-col>
-                  </ion-row>
-  
-                </ion-row>
-                <ion-row >
-                  {{cerveja.ds_pais}}
-                </ion-row>
-                <ion-row >
-                  {{cerveja.ds_estilo_abrev}}
-                </ion-row>
-                <ion-row >
-                  <ion-col col-6 >
-                    ABV: {{cerveja.vl_teor_alcoolico}}%
-                  </ion-col>
-                  <ion-col col-6 >
-                      {{cerveja.nm_ibu}} IBU's
-                  </ion-col>
-                </ion-row>
-                <ion-row >
-  
-                  <rating [(ngModel)]="rate" readOnly="false" max="5" value="3.4" emptyStarIconName="star-outline" halfStarIconName="star-half"
-                    starIconName="star" nullable="false">
-                  </rating>
-                </ion-row>
-              </ion-col>
-  
-              <ion-col col-2>
-                <ion-buttons>
-                      <button ion-button color="danger" (click)="setLikeBeer(cerveja.id_cerveja)" ion-button icon-only clear>
-                        <h3>{{cerveja.qtd_curtida}}</h3>
-                        <ion-icon name="heart-outline"></ion-icon>
-                      </button>
-                  </ion-buttons>
-  
-                <ion-buttons>
-                      <button (click)="goToComentariosPage(cerveja)" ion-button icon-only clear>
-                          {{cerveja.qtd_comentarios}}
-                        <ion-icon name="chatbubbles"></ion-icon>
-                      </button>
-                    </ion-buttons>            
-                <ion-buttons>
-                  <button  (click)="jaProvei(cerveja.id_cerveja)" ion-button icon-only clear >
-                    <ion-icon name="checkmark-circle-outline"></ion-icon>
-                  </button>
-                </ion-buttons>
-
-                <ion-row>
-                    <button (click)="goToEstabelecimentos(cerveja.id_cerveja)" ion-button icon-only clear >
-                        <ion-icon name="search"></ion-icon>
-                    </button>    
-                </ion-row>
-  
-              </ion-col>
-  
-            </ion-row>
-  
-          </ion-grid>
-      </ion-card>
-    </ion-list>
-    <ng-template #notLoggedIn>
-      <ion-list>
-        <ion-card *ngFor="let cerveja of lista_cervejas">
-          <div class="card-title">{{cerveja.ds_cerveja_abrev}}</div>
-          <ion-grid>
-            <ion-row >
-              <ion-col col-3 >
-                <img [src]='cerveja.im_cerveja' />
-              </ion-col>
-  
-              <ion-col col-7 >
-                <ion-row >
-                <ion-row >
-                    <ion-col col-5>
-                      <img [src]='cerveja.im_pais' />
-                    </ion-col>
-                  </ion-row>
-  
-                </ion-row>
-                <ion-row >
-                  {{cerveja.ds_pais}}
-                </ion-row>
-                <ion-row >
-                  {{cerveja.ds_estilo_abrev}}
-                </ion-row>
-                <ion-row >
-                  <ion-col col-6 >
-                    ABV: {{cerveja.vl_teor_alcoolico}}%
-                  </ion-col>
-                  <ion-col col-6 >
-                      {{cerveja.nm_ibu}} IBU's
-                  </ion-col>
-                </ion-row>
-                <ion-row >
-  
-                  <rating [(ngModel)]="rate" readOnly="false" max="5" value="3.4" emptyStarIconName="star-outline" halfStarIconName="star-half"
-                    starIconName="star" nullable="false">
-                  </rating>
-                </ion-row>
-              </ion-col>
-  
-              <ion-col col-2>
-                <ion-buttons>
-                      <button ion-button color="danger" (click)="setLikeBeer(cerveja.id_cerveja)" ion-button icon-only clear>
-                        <h3>{{cerveja.qtd_curtida}}</h3>
-                        <ion-icon name="heart-outline"></ion-icon>
-                      </button>
-                  </ion-buttons>
-  
-                <ion-buttons>
-                      <button (click)="goToComentariosPage(cerveja)" ion-button icon-only clear>
-                          {{cerveja.qtd_comentarios}}
-                        <ion-icon name="chatbubbles"></ion-icon>
-                      </button>
-                    </ion-buttons>            
-                <ion-buttons>
-                  <button  (click)="jaProvei(cerveja.id_cerveja)" ion-button icon-only clear >
-                    <ion-icon name="checkmark-circle-outline"></ion-icon>
-                  </button>
-                </ion-buttons>
-
-                <ion-row>
-                    <button (click)="goToEstabelecimentos(cerveja.id_cerveja)" ion-button icon-only clear >
-                        <ion-icon name="search"></ion-icon>
-                    </button>    
-                </ion-row>
-  
-              </ion-col>
-  
-            </ion-row>
-  
-          </ion-grid>
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-segment [(ngModel)]="tipoCerveja" (ionChange)="tipoCervejaSel($event)">
+    <ion-segment-button value="0">
+      Cervejas
+    </ion-segment-button>
+    <ion-segment-button value="1">
+      On Tap
+    </ion-segment-button>
+  </ion-segment>
+  <ion-list>
+    <div *ngFor="let cerveja of lista_cervejas">
+      <div *ngIf="cerveja.novaCategoria != undefined">
+        <ion-card class="card">
+          <div class="categoria">
+            {{cerveja.novaCategoria}}
+          </div>
+          <div class="ds_categoria">
+            {{cerveja.ds_categoria}}
+          </div>
         </ion-card>
-      </ion-list>
-    </ng-template>
+      </div>
+      <ion-card class="card">
+        <ion-grid>
+          <ion-row>
+            <div class="titulo">
+              {{cerveja.ds_cerveja_abrev}}
+            </div>
+          </ion-row>
+          <ion-row>
+            <div class="ds_estilo">
+              {{cerveja.ds_estilo_abrev}}
+            </div>
+          </ion-row>
+          <ion-row>
+            <ion-col col-3>
+               <img [src]='cerveja.im_cerveja!=null?cerveja.im_cerveja:"http://sistema.beercomigo.com/img/icones/cerveja_sem_imagem.png"' />
+            </ion-col>
+            <ion-col>
+              <ion-row align-items-center style="margin-top: 5px;">
+                <div style="width: 20%">
+                  <img [src]='cerveja.im_pais' />
+                </div>
+                <div style="margin-left:5px;">{{cerveja.ds_pais}}</div>
+              </ion-row>
+              <ion-row style="margin-top: 15px;">
+                <span>ABV: {{cerveja.vl_teor_alcoolico}}%</span>
+                <span style="margin-left:15px;" *ngIf="cerveja.nm_ibu != null;">IBU: {{cerveja.nm_ibu}}</span>
+              </ion-row>
+              <ion-row style="margin-top: 5px;" align-items-center>
+                <div class="avaliacao">
+                  <ion-icon name="{{cerveja.tipo_estrela}}"></ion-icon>
+                </div>
+                <div style="margin-left: 5px">{{cerveja.avaliacao}}</div>
+              </ion-row>
+            </ion-col>
+            <ion-col col-2>
+              <ion-buttons>
+                <button ion-button color="danger" (click)="setLikeBeer(cerveja.id_cerveja)" ion-button icon-only clear>
+                  <h3>{{cerveja.qtd_curtida}}</h3>
+                  <ion-icon name="heart-outline"></ion-icon>
+                </button>
+              </ion-buttons>
+
+              <ion-buttons>
+                <button (click)="goToComentariosPage(cerveja)" ion-button icon-only clear>
+                  {{cerveja.qtd_comentarios}}
+                  <ion-icon name="chatbubbles"></ion-icon>
+                </button>
+              </ion-buttons>
+              <ion-buttons>
+                <button ion-button small (click)="jaProvei(cerveja.id_cerveja)" ion-button clear>
+                  Já provei!
+                </button>
+              </ion-buttons>
+            </ion-col>
+
+          </ion-row>
+          <ion-row>
+            <button ion-button small ion-button color="#771100" outline (click)="goToEstabelecimentos(cerveja.id_cerveja)" full>
+              <ion-icon name="search"></ion-icon>
+              <span style="margin-left:5px">Encontrar Cerveja</span>
+            </button>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+    </div>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="paginacaoCerveja($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
