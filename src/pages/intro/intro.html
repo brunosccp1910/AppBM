@@ -17,9 +17,12 @@
       <p style="color:burlywood ">
         Beer Comigo é uma empresa de prestação de serviços e comercialização de bebidas, idealizada por um Beer Sommelier para atender a cidade de São Luís e região.
       </p>
+      <ion-footer style="margin:20%" >
+          <button (click)="goToSlide()"  ion-button outline>Próximo</button>
+      </ion-footer>
     </ion-slide>
   
-    <ion-slide style="background-color: blue">
+    <ion-slide>
       <ion-header>
         <ion-navbar>
           <ion-title>
@@ -27,18 +30,10 @@
           </ion-title>
         </ion-navbar>
       </ion-header>
-       
+        <h1>Crie sua conta!</h1>
         <button ion-button full (click)="loginWithFB()">Login!</button>
-       
-        <ion-card *ngIf="userData">
-          <ion-card-header>{{ userData.username }}</ion-card-header>
-          <img [src]="userData.picture" />
-          <ion-card-content>
-            <p>Email: {{ userData.email }}</p>
-            <p>First Name: {{ userData.first_name }}</p>
-          </ion-card-content>
-        </ion-card>
-       
+ 
+      
     </ion-slide>
 
   </ion-slides>

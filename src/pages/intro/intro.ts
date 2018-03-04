@@ -6,6 +6,9 @@ import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { Device } from '@ionic-native/device';
 
+import { ViewChild } from '@angular/core';
+import { Slides } from 'ionic-angular';
+
 
 @IonicPage()
 @Component({
@@ -16,6 +19,7 @@ import { Device } from '@ionic-native/device';
   ]
 })
 export class IntroPage {
+  @ViewChild(Slides) slides: Slides;
   public userData: any;
 
   constructor(public navCtrl: NavController,
@@ -67,6 +71,10 @@ export class IntroPage {
 
   setUserData(userData){
     this.userData = userData;
+  }
+
+  goToSlide() {
+    this.slides.slideTo(2, 500);
   }
   
   
